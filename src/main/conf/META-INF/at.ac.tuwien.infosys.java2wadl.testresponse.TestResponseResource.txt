@@ -1,0 +1,67 @@
+<?xml version="1.0"?>
+<application xmlns="http://research.sun.com/wadl/2006/10"
+xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <grammars>
+    <include
+    href="at.ac.tuwien.infosys.java2wadl.testresponse.Element.xsd">
+    </include>
+  </grammars>
+
+  <resources base="/base">
+    <resource path="testresponse">
+      <method href="#TestResponseResource_deleteElement_" />
+
+      <method href="#TestResponseResource_getElementName_" />
+
+      <method href="#TestResponseResource_updateElement_Element" />
+
+      <method href="#TestResponseResource_postElement_Element" />
+    </resource>
+  </resources>
+
+  <method name="DELETE" id="TestResponseResource_deleteElement_">
+    <response>
+      <representation status="204">
+      </representation>
+
+      <fault status="400">
+      </fault>
+    </response>
+  </method>
+
+  <method name="GET" id="TestResponseResource_getElementName_">
+    <response>
+      <param name="String" style="header" type="xs:string">
+      </param>
+    </response>
+  </method>
+
+  <method name="POST"
+  id="TestResponseResource_updateElement_Element">
+    <request>
+      <representation mediaType="application/xml"
+      element="j2wns:element">
+      </representation>
+    </request>
+
+    <response>
+      <representation status="200">
+      </representation>
+    </response>
+  </method>
+
+  <method name="POST"
+  id="TestResponseResource_postElement_Element">
+    <request>
+      <representation mediaType="application/xml"
+      element="j2wns:element">
+      </representation>
+    </request>
+
+    <response>
+      <representation mediaType="application/xml"
+      element="j2wns:element" status="200">
+      </representation>
+    </response>
+  </method>
+</application>
