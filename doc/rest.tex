@@ -1,0 +1,105 @@
+
+\subsubsection*{Definition}
+In contrast to SOAP, REST should not be seen as a well-defined protocol or architecture, but as way of "judging architectures". \cite{FIELDING} Therefore the term "RESTful" should be interpreted in the same way as terms like "object-oriented" or "service-oriented"; these expressions do not define interfaces, but provide guidelines on how the software architecture should look like. 
+\\
+Following this definition, it becomes obvious that there can be no single uniform REST standard for all Web Services; the only thing REST provides is a set of meta rules for describing resources and means of interaction in applications.
+\\ \\
+Roy Fielding describes REST as follows:
+\begin{quote}
+The name “Representational State Transfer” is intended to evoke an image of how a well-designed  Web application behaves: a network of web pages (a virtual state-machine), where the user progresses through the application by selecting links (state transitions), resulting in the next page (representing the next state of the application) being transferred to the user and rendered for their use. 
+\\
+REST is not intended to capture all possible uses of the Web protocol standards. [...] The important point, however, is that REST does capture all of those aspects of a distributed hypermedia system that are considered central to the behavioral and performance requirements of the Web, [...]. \cite{FIELDING}
+\end{quote}
+
+\subsubsection*{Characteristics and Constraints}
+Fielding \cite{FIELDING} describes six key characteristics for RESTful Web Services: 
+
+\begin{itemize}
+\item{{\bf Client/Server Architecture:}
+As mentioned above, RESTful Web Services rely on a client/server architecture with a pull-based interaction style, which means that the client is responsible for accessing and modifying resources. Push-based interaction can also be emulated by polling (e.g. to implement the Observer-pattern).}
+
+\item{{\bf Statelessness:}
+Another property of RESTful Web Services is their statelessness, which forces clients to encapsulate necessary state information in each request, because there is no stored context on the server. Even though the inherent statelessness has a large impact on network performance, it also enables RESTful web services to scale horizontally. Additionally parallel processing is enabled, since there are no direct dependencies between requests.}
+
+\item{{\bf Cache:}
+RESTful Web Services also have to provide information whether responses are cachable or non-cachable. This enables clients to (partially) buffer information on their side, to reduce network traffic and ultimately to help scalability.}
+
+\item{{\bf Uniform Interface:}
+It must be possible to access all resources via a generic interface (e.g. HTTPs GET, POST, PUT, DELETE, OPTIONS, HEAD). By applying the principle of generality to the component interface, the overall complexity of the system architecture is thus reduced and most important of all, implementations are decoupled from the APIs/Services they describe.}
+
+\item{{\bf Layered Components:}
+The system must be built in a way such that it is possible to insert intermediate entities such as proxy servers, caches or access control layers to enhance performance, scalability and security.}
+
+\item{{\bf Code-on-Demand:}
+Clients may provide functionality to download and execute code in form of applets and scripts, which drastically simplifies clients and aids code-reuse. Due to the fact that visibility suffers from this constraint, it is made optional, but still preferable in some cases (for example in the form of Java Applets).}
+
+\end{itemize}
+Additionally, Fielding shows that REST APIs should not depend on single communication protocols (such as the HTTP); he states that any protocol providing URLs for identification of resources can be used for REST-style applications (such as FTP and Gopher). \cite{FIELDINGBLOG}.
+
+\subsubsection*{Architectural Elements}
+
+\begin{itemize}
+
+\item{{\bf Resources and Resource Identifiers:}
+In REST, resources are the key element of abstraction; they are uniquely identified via a resource identifier (in form of a URL). Resources may be dynamic (e.g. the current time) or static (non-changing entities such as the date-of-birth or the social secURLty number).}
+
+\item{{\bf Representations:}
+REST representations are used to capture and transfer the state of resources between components. Representations are defined as a sequence of bytes, but can also be thought of as documents, files or generally HTTP messages.}
+
+\item{{\bf Connectors and Components:}
+REST connectors provide an abstract interface for component communication. They hide the underlying implementation and thus improve separation of concerns. Web-connectors are specifically: \emph{servers} (server interfaces, such as libwww or NSAPI), \emph{clients} (an http-library to communicate with a server, such as libwww), \emph{caches} (cache networks or content delivery networks), \emph{resolvers} (service-resolvers such as DNS) and \emph{tunnels} (low-level connectivity libraries, such as SOCKS or SSL).}
+
+\end{itemize}
+
+\subsubsection*{REST on the HTTP}
+One of the key characteristics of the Representational State Transfer idiom is its stateless client/server architecture in which resources can be identified by URLs. Access to these resources is available via the following HTTP-methods: GET, HEAD, PUT, POST, DELETE, OPTIONS.
+\\ \\
+Usually these methods can be mapped directly onto typical CRUD\footnote{Create, Read, Update, Delete}-operations available in databases, but their real semantics depend on the application- and framework-context.
+\\ \\
+A general (but incomplete) mapping to CRUD-operations could look like this:
+\begin{center}
+	\begin{tabular}{| l | l | l | l |}
+		\hline
+		HTTP METHOD & CRUD & SQL & ACTION \\  \hline
+		POST & Create & Insert & Create \\ \hline
+		GET & Read & Select & Show \\ \hline
+		PUT & Update & Update & Update \\ \hline
+		DELETE & Delete & Delete & Destroy \\ \hline
+	\end{tabular}
+\end{center}
+
+\subsubsection*{A Real World Example: The S3 RESTful Web Service}
+
+Essentially S3 is a simple Web Service interface that can be used to store and retrieve any amount of data, at any time from anywhere in the Web. It provides a minimal feature set to read, write and delete an unlimited amount of data-objects. Each object is stored in a bucket and is identified via a unique key.
+\\ \\
+Amazon exposes the S3 Service amongst others via a RESTful interface which provides three different types of resources:
+\begin{itemize}
+\item{A list of buckets: https://s3.amazonaws.com/}
+\item{A particular bucket: https://s3.amazonaws.com/\emph{bucket-name}}
+\item{A particular object inside a bucket: https://s3.amazonaws.com/\emph{bucket-name}/\emph{object-name}}
+\end{itemize}
+The following table describes how to access buckets and objects and manipulate them with according HTTP methods:
+\begin{center}
+	\begin{tabular}{l l l l l}
+		\hline
+		RESOURCE & GET & HEAD & PUT & DELETE \\  \hline
+		List Buckets \\
+		(/) & List buckets & - & - & - \\ 
+		Access Bucket \\
+		(/\emph{bucket}) & List objects & - & Create bucket & Delete bucket \\ 
+		Access Object \\
+		(/\emph{bucket}/\emph{object}) & Get object & Get metadata & Set data and metadata & Delete object \\
+		\hline
+	\end{tabular}
+\end{center}
+To create a new bucket named \emph{foo}, the following HTTP request can be used\footnote{Metadata and authentication parameters are omitted for simplicity's sake.}
+\begin{center}
+\emph{PUT https://s3.amazonaws.com/foo}
+\end{center}
+The next request deletes the bucket
+\begin{center}
+\emph{DELETE https://s3.amazonaws.com/foo}
+\end{center}
+Due to RESTs simplicity and the somewhat generic nature of S3, service access is trivial and can be used directly on a GUI front-end with Web-forms as well as with programs or scripts.
+\\ \\
+TODO: Show responses, how to navigate, what are components, connectors, resources...

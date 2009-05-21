@@ -1,0 +1,37 @@
+\subsubsection*{Definition}
+The W3C defines a Web Service as follows: 
+\begin{quote}
+A Web service is a software system designed to support interoperable machine-to-machine interaction over a network. It has an interface described in a machine-processable format (specifically WSDL). Other systems interact with the Web service in a manner prescribed by its description using SOAP messages, typically conveyed using HTTP with an XML serialization in conjunction with other Web-related standards. \cite{WSARCH}
+\end{quote}
+The W3C also defines several key components present in Web Services (also see Figure 1):
+\\ \\
+A Web \emph{Service} is an "abstract notion", that is implemented by a concrete \emph{Agent}. This means that the Service part is the API of the application, while the Agent is a concrete peace of software that provides functionality for the API. 
+\\ \\
+A \emph{requester} is an entity that wishes to make use of a service, while a \emph{provider} is an entity that offers an appropriate agent which implements a particular service. 
+\\ \\
+The \emph{Web Service description} is a machine-processable specification of the Web service's interface (written in WSDL). Amongst other things it defines message format, datatypes or network locations for agents. 
+\\ \\
+The \emph{semantics} of a Web service is the shared expectation about the behavior of the service, in particular in response to messages that are sent to it. \cite{WSARCH}
+\begin{figure}[htp]
+\centering
+\includegraphics[scale=0.9]{img/web_services.pdf}
+\caption{Simplified Web Service Architecture}\label{fig:erptsqfit}
+\end{figure}
+\\
+\subsubsection*{HTTP-based Web Services}
+According to this definition, frameworks such as CORBA, DCOM and RMI fall into the Web Service category. These middleware platforms provide a solid, well tested and well documented set of tools and libraries to compose applications. Still, HTTP based web services offer several advantages and have gained popularity over classical frameworks in recent years, which is one of the reasons, why the term Web Services is nowadays commonly used to describe a client/server architecture that communicates over the Hypertext Transfer Protocol.
+\\ \\
+The biggest advantage of HTTP Web Services over classical ones is clearly HTTPs simplicity of access, its ubiquity and most of all its uniform and widely accessible interface when it comes to integrating software. Language barriers \footnote{e.g. RMI is typically used for JVM platforms only. Implementations for other runtimes and languages exist, but are not officially supported by Sun or IBM} seize to exist and the number of software dependencies shrinks, since all communication can be handled with a combination of XML- and HTTP-libraries. Typically this is not necessary, because libraries that deal with low-level communication (i.e. HTTP and below) already exist and provide an abstraction to enable endpoint communication directly.
+\\ \\
+The combination of HTTP and XML therefore decouples components with a general purpose representation language so that they can be accessed on many different platforms, such as the JVM\footnote{\url{http://ws.apache.org/axis}}, the CLR\footnote{TODO}, Ruby\footnote{TODO} or Perl\footnote{TODO}. 
+\\ \\
+Since these Web Services communicate directly over HTTP, a number of optimization techniques typically used in web applications can be exploited to make HTTP-based Web Services scale. (Partial) Content Caching for example stores calculated XML data in buffers and re-uses the data whenever possible for further requests.
+\begin{figure}[htp]
+\centering
+\includegraphics[scale=0.80]{img/http_web_services.pdf}
+\caption{Simplified HTTP-based Web Service Architecture}\label{fig:erptsqfit}
+\end{figure}
+\\ \\
+As mentioned in the introduction, HTTP-based Web Services are subdivided into two major groups: "Big Web Services" that use XML, Message Passing and Remote Procedure Calls and follow the SOAP protocol as well as "RESTful" Web Services which do not necessarily require XML and rely only on Remote Procedure Calls. 
+\\ \\
+The next part of this article discusses the basics of the REST architecture, the Web Application Description Language and compares it to SOAP/WSDL-stack.

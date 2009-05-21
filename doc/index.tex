@@ -1,20 +1,25 @@
-\documentclass[a4paper,11pt]{article}
+\documentclass[a4paper,12pt]{article}
+
+\usepackage{geometry}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{listings}
+
+\geometry{verbose,a4paper,tmargin=25mm,bmargin=25mm,lmargin=30mm,rmargin=30mm}
 
 \begin{document}
 
-\title{Java2Wadl2Java - An End to End Solution for RESTful Webservices}
-\author{Andreas Meingast
-	\\Matrikelnummer: 0426062
-	\\Studienkennzahl: e534}
+\title{Java2Wadl2Java - An End to End Solution for Describing RESTful Webservices}
+\author{Andreas Meingast - 0426062/e534}
 
-\date{February 2008}
+\date{May 2008}
 
 \maketitle
 
-\vspace{7cm}
+\vspace{6cm}
 
 \begin{abstract}
-Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+\input{abstract.tex}
 \end{abstract}
 
 \newpage
@@ -26,35 +31,86 @@ Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor 
 \bibliographystyle{plain}
 
 \section{Introduction}
-
-\subsection{Problem Space}
-
-\subsection{Requirements}
+\input{intro.tex}
 
 \section{Technologies}
 
-\subsection{REST and JAX-RS}
+\subsection{Web Services}
+\input{web_services.tex}
 
-\subsection{WADL}
+\subsection{The RESTful Architectural Style}
+\input{rest.tex}
+
+\subsection{The  Web Application Description Language}
+\input{wadl.tex}
 
 \subsection{REST/WADL in Comparison to SOAP/WSDL}
 
-\section{Related Work}
+Short intro to SOAP/WSDL
+
+general architectural/ideological differences
+
+REST-SOAP differences
+
+SOAP-WSDL differences
+
+Advantages of either protocols
+
+== Quote lots of stuff from "RESTful Web Services vs. “Big” Web Services: Making the Right Architectural Decision " and "Definition Languages for RESTful Web Services:  
+WADL vs. WSDL 2.0 "
 
 \section{Design and Implementation}
 
+\subsection{Problem Space and Specific Requirements}
+
+provide an implementation for the WADL standard which produces WADL descriptions for JAX-RS annotated classes and the other way round (generate JAX-RS classes for WADL files)
+
+run on the JVM (specifically the Java language)
+
+minimalize compile and runtime-dependencies
+
+low resources footprint	
+
+separate API from implementation
+
+Agile development, especially TDD
+	
 \subsection{Software Architecture}
+
+Separation of the API from the implementation. (api vs. impl)
+1-1 Mapping of WADL-elements to Java-Classes
+Compiletime library dependencies
+Runtime library dependencies
 
 \subsection{Java2Wadl}
 
 \subsection{Wadl2Java}
 
-\subsection{Usage Scenarios}
+\subsection{Java2Wadl2Java}
+
+\section{Related Work}
+
+\section{Evaluation}
 
 \section{Conclusion}
 
+Since the purpose of this paper is not to discuss the practicality of REST, but to gain insights on the general usefulness of the description language WADL, 
+
+Abgrenzung!
+
+is WADL pracitcal?
+
 \newpage
 
+\appendix
+
+\section{RESTful Web Service Example}
+
+\section{Wadl2Java Example}
+
+\section{Java2Wadl2Java Example}
+
+\bibliographystyle{alpha}
 \bibliography{index}
 
 \end{document}

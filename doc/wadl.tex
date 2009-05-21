@@ -1,0 +1,34 @@
+\subsubsection*{Definition}
+The Web Application Description Language (short WADL) is an XML-language providing a machine-readable description of HTTP-based  web applications. Originally it was designed to provide a simple alternative to WSDL for use with XML/HTTP Web applications. Still, the main purpose of this language is to offer meta-information especially for RESTful web services; thus it provides information for: 
+\begin{itemize}
+\item{{\bf A set of resources:} as defined in \emph{Architectural Elements}.}
+\item{{\bf Relationships between resources:} how resources relate to each other. Both, referential and causal links are included.}
+\item{{\bf Methods that can be applied to each resource:} HTTP methods that each resource responds to. Additionally information about input parameters, return values and their formats is provided.}
+\item{{\bf Resource representation formats and error handling:} which MIME types the application supports and how how the described service acts in case of faults. \cite{WADL}}
+\end{itemize}
+Even though REST is not necessarily bound to a protocol, WADL is only defined for the HTTP.
+\subsubsection*{Application}
+The most important field of application is \emph{code generation} for servers and clients. Essentially, once a service is described properly in the WADL, it is possible to generate skeletons (in various languages, such as Java, C\# or Ruby) which then can be implemented and deployed on application servers. Vice versa it is also possible to generate WADL descriptions based on implementations.
+\\
+Type information is especially useful for statically typed languages such as Java or C\#, where types play a crucial role in the actual implementation.
+\\ \\
+Another application area of the WADL is the field of \emph{application modelling and visualization}. It allows for development of resource modelling tools and to analyze resource relationships and dependencies. \cite{WADL}
+\\ \\
+WADL also provides a form of \emph{type safety}. Since WADL resources are annotated with types, this information can be drawn into consideration at compile-time and used to check the implementation for type mismatches. Analogue to statically typed programming languages this can have a major impact on error detection and furthermore on code quality.
+\\
+Since WADL is primarily used for RESTful interfaces this can also be seen as a point of criticism, since the RESTful architectural guide explicitly forbids typing of resources.
+
+\subsubsection*{Criticism}
+The original author of the REST style, Roy T. Fielding, criticizes description languages for RESTful interfaces. He states that RESTful APIs should never have "typed resources that are significant for the client", since the typing information should only be inferred from the current representations media type and and standardized relation names.  \cite{FIELDBLOG}
+\\ \\
+Another major point of criticism is the fact that the WADL includes URLs to describe resources \emph{statically}. While this is necessary to describe RESTful applications in WADL, it is also at odds with RESTs primary principle that clients should not rely on fixed namespaces or URLs (i.e. have any link other than the entry point to the application baked into the application).
+\\ \\
+Fielding states:
+\begin{quote}
+Servers must have the freedom to control their own namespace. Instead, allow servers to instruct clients on how to construct appropriate URLs, such as is done in HTML forms and URI templates, by defining those instructions within media types and link relations. \cite{FIELDBLOG}
+\end{quote}
+The idea behind this principle is that it allows services to change URLs or servers without breaking any client code. Once clients rely on static URLs or namespaces, WADL descriptions and depending client code have to be maintained to always match the exact links. In case of major changes to the server application, large parts of the client code have to be thrown away, re-generated and re-implemented.
+\\
+If, instead, clients use hypertext, link following and request construction based on hypertext, representations and client state, the client-side interface is less likely to break. \cite{GREGBLOG}
+\\ \\
+Another weakness of the WADL standard is the fact that it is not possible to capture all application semantics in the description. Contracts are described in a context-free manner, but only parts of the agreement can be described statically before hand. A large part of the information is only available at runtime and cannot be drawn into conclusion by the WADL-compiler (e.g. exceptions and errors).

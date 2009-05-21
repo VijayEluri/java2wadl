@@ -1,0 +1,18 @@
+\contentsline {section}{\numberline {1}Introduction}{3}{section.1}
+\contentsline {section}{\numberline {2}Technologies}{4}{section.2}
+\contentsline {subsection}{\numberline {2.1}Web Services}{4}{subsection.2.1}
+\contentsline {subsection}{\numberline {2.2}The RESTful Architectural Style}{5}{subsection.2.2}
+\contentsline {subsection}{\numberline {2.3}The Web Application Description Language}{9}{subsection.2.3}
+\contentsline {subsection}{\numberline {2.4}REST/WADL in Comparison to SOAP/WSDL}{11}{subsection.2.4}
+\contentsline {section}{\numberline {3}Design and Implementation}{11}{section.3}
+\contentsline {subsection}{\numberline {3.1}Problem Space and Specific Requirements}{11}{subsection.3.1}
+\contentsline {subsection}{\numberline {3.2}Software Architecture}{11}{subsection.3.2}
+\contentsline {subsection}{\numberline {3.3}Java2Wadl}{12}{subsection.3.3}
+\contentsline {subsection}{\numberline {3.4}Wadl2Java}{12}{subsection.3.4}
+\contentsline {subsection}{\numberline {3.5}Java2Wadl2Java}{12}{subsection.3.5}
+\contentsline {section}{\numberline {4}Related Work}{12}{section.4}
+\contentsline {section}{\numberline {5}Evaluation}{12}{section.5}
+\contentsline {section}{\numberline {6}Conclusion}{12}{section.6}
+\contentsline {section}{\numberline {A}RESTful Web Service Example}{13}{appendix.A}
+\contentsline {section}{\numberline {B}Wadl2Java Example}{13}{appendix.B}
+\contentsline {section}{\numberline {C}Java2Wadl2Java Example}{13}{appendix.C}
