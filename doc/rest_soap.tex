@@ -1,0 +1,63 @@
+
+\subsubsection*{SOAP}
+
+The W3C standard defines SOAP as follows:
+\begin{quote}
+SOAP Version 1.2 (SOAP) is a lightweight protocol intended for exchanging structured information in a decentralized, distributed environment. It uses XML technologies to define an extensible messaging framework providing a message construct that can be exchanged over a variety of underlying protocols. The framework has been designed to be independent of any particular programming model and other implementation specific semantics. \cite{SOAPCORE}
+\end{quote}
+A SOAP document consists of a top-level XML-element called \emph{envelope}, which contains a \emph{header}, a \emph{body} or in case of an error a \emph{fault}. The header is an extensible container that allows to enhance messages with infrastructural information such as routing-information, transactional contexts, security, correlation, reliability and general QoS-information. Analogue to SMTP-messages, the header contains meta-information and the body the actual message. Errors and exceptions are mapped to fault elements; they contain a fault code, and general error information such as error-reasons and error-messages.
+\\ \\
+SOAP messages are transmitted between SOAP nodes or more specifically between network accessible \emph{endpoints}. Transmission is typically accomplished via HTTP, but it is not necessarily bound to this protocol; other compatible protocols are for example: SMTP, FTP or Message Queues. \cite{BIGREST}
+\\ \\
+The SOAP language is defined in an XML Schema that guarantees the well-formedness and syntactical sanity of transmitted data, which makes it convenient for endpoints to convert plain XML-data to runtime objects (e.g. serialize/deserialize objects in Java with an XML library).
+
+\subsubsection*{WSDL}
+
+The W3C defines WSDL as follows:
+\begin{quote}
+WSDL is an XML format for describing network services as a set of endpoints operating on messages containing either document-oriented or procedure-oriented information. The operations and messages are described abstractly, and then bound to a concrete network protocol and message format to define an endpoint. Related concrete endpoints are combined into abstract endpoints (services). [...] \cite{WSDLCORE}
+\end{quote}
+
+A WSDL definition consists of a root-element called \emph{definitions}; it contains descriptions of \emph{types} for abstract data type definitions using XML Schema, \emph{messages} to define abstract (multi-part) messages, \emph{portTypes} to denote an abstract set of supported operations (i.e. define an interface for the exchange of messages), \emph{bindings} to define a concrete protocol and data format for a particular portType and \emph{services}: a set of related endpoints stored as URIs.
+\\ \\
+Therefore the WSDL binding provides syntactical description for Web services; it describes a set of abstract routines as well as concrete transport protocol and serialization formats that can be used by endpoints to generate code-stubs and conduct sanity checks on transmitted data. \cite{BIGREST}
+
+\subsubsection*{REST vs. SOAP}
+
+The biggest conceptual difference between REST and SOAP is the fact that SOAP is a concrete message exchange protocol while REST is only an architectural guideline on how to structure applications. SOAP defines messages or generally speaking communication agreements, while REST defines abstract means and entities to design and implement protocols that are based on resources connected by URIs.
+\\
+In contrast to RESTs resource oriented information access, SOAP is service oriented, which entails that resources and actions do not necessarily depend on each other and may as well be completely orthogonal. This has a direct consequence on the resulting software architectures: while RESTful Web services offer few operations through a generic interface in form of HTTP methods (e.g. GET, POST, ...) and many resources, SOAP provides many context-dependent operations on few resources via a service interface.
+\\ \\
+While REST explicitly forbids server-side state, there is no strict regulation for statefulness in SOAP applications. In fact it is possible to emulate state and store data-structures on the server side with the \emph{WS-Resource} extensions\cite{WSRES}. As an alternative for stateful servers REST provides means of caching data on the server- and on the client-side.
+\\ \\
+REST and SOAP are both independent of the underlying transport protocol, but the HTTP is usually used for communication. Since RESTful Web services do not provide plugin interfaces or extension points, one way to secure communication is to encrypt the HTTP communication channel by using HTTPs. Alternatively encryption could be applied to  channels below the Application Layer: IPSec, VPNs or generally SSL encrypted TCP/IP sockets could be used to guarantee security for point to point communication.
+\\
+SOAP provides a full security solution in the form of the \emph{WS-Security} extensions. \cite{WSSEC} It features security libraries for XML encryption, XML signatures and thus provides a secure end-to-end communication channel by directly protecting SOAP messages.
+\\ \\
+SOAP also offers transactions. There are two basic approaches: The \emph{WS-AtomicTransaction} \cite{WSATOMIC} provides a common algorithm called \emph{two-phase commit} that is easy to implement. On the other hand \emph{WS-BusinessActivity} provides a business-oriented alternative, but is harder to integrate into existing applications than \emph{WS-AtomicTransaction}. \cite{RESTFULWEB}
+\\
+REST does not provide any means for transactions. \cite{RESTFULWEB} suggests to hand craft a two phase commit protocol on-top of the REST architectural style, but also mentions that it might not be suitable in all situations.
+\\ \\
+In contrast to REST, which does not define any means of extension, SOAP offers a vast library of software (e.g. Quality of Service, routing, transactions).
+\\ \\
+Another key distinction between SOAP and REST becomes obvious when looking at the typical application design methodology: 
+\\ \\
+RESTful Web services are designed around resources. First of all resources are identified and mapped onto URLs. Side effect-free operations are mapped on GET, OPTIONS and HEAD and state-modifiyng routines are mapped onto POST, PUT and DELETE. Relationships between resources are expressed with hyperlinks. Finally data representations must be chosen. Applications can be deployed on any compatible Web server (e.g. Apache httpd and mod\_perl). \cite{BIGREST}
+\\ \\
+SOAP Web service development typically starts with the creation of a WSDL file that lists all available services. Then data models for message content are defined with XML schemas and mapped onto a transport protocol. Finally operations are inserted into the WSDL and extensions are configured and installed. Deployment is only possible on compatible Web service containers (e.g. Apache Axis). \cite{BRINGBACKWEB}
+\\ \\
+Since REST is only an architectural guideline, it is hard to design general purpose toolkits and provide IDE-support. SOAP excels in this area, since it has a large developer community and commercial backing. It provides tools for code-generation and integration. 
+
+\subsubsection*{WADL vs. WSDL}
+
+Until the development of the WADL RESTful Web services did not have a description language and relied on a human-oriented approach based on textual descriptions and extensive documentation of the API of the provided service. \cite{PROGRAMWEB} With the appearance of WADL, WSDLs advantages such as code-stub generation have also become available for RESTful Web services.
+\\ \\
+In comparison to WSDL which is an interface-centric description language, WADL is resource-oriented. A WADL document consists of a set of resource descriptions, while a WSDL document is composed of interface-  and operation-definitions.
+\\
+WSDL can define operations for complex behavior, WADL enforces to characterize the application with basic HTTP methods (e.g. GET, POST, ...). Since WADL is HTTP-only, all message exchange is mapped onto HTTP methods; WSDL 2.0, on the other hand, provides message exchange patterns such as: \emph{one-way}, \emph{notification}, and \emph{request-response}. These patterns are then mapped onto the underlying transfer protocol; some protocols have direct support for these patterns, while others have to emulate them with multiple requests/responses (e.g. SMTP has native support for notifications, while HTTP has to emulate it with polling).
+\\ \\
+Due to the fact that WADL only supports description of HTTP-based Web applications, the language is far less complex than WSDL (2.0). WSDL 2.0 is designed to be protocol independent and thus also supports descriptions for SMTP, FTP and Message Queues. It can be argued that version 2.0 of the WSDL standard is too complex, because predominant use cases for the standard are HTTP-based Web services and other transfer transfer protocols are negligible. 
+\\ \\
+While WSDL 2.0 explicitly supports application state with bindings for HTTP cookies, WADL does not provide any means to support statefulness (but it also does not forbid it). Due to the lack of abstraction for state, WADL requires that all necessary state is put into request parameters. \cite{WADLWSDL}
+\\ \\
+WSDL and WADL provide means to describe the syntax of exchange messages with a schema language. WADL supports XML Schema and RelaxNG documents. WSDL supports XML Schema solely.

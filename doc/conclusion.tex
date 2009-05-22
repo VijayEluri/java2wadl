@@ -1,0 +1,9 @@
+The evaluation of REST/WADL and SOAP/WSDL shows that Service-Oriented Architectures (SOA) and Web services in particular can be implemented in different ways. 
+\\ \\
+While REST/WADL is based on the paradigm that applications should publish their data on the Web through URIs, SOAP/WSDL sees the Web only as a means of transport for messages, which has a large impact on resulting software architectures. RESTful Web applications embrace the HTTP standard and apply its key abstractions in a direct manner (e.g. HTTPs methods, encryption via HTTPs). SOAP on the other hand can be seen as a layer of abstraction built on top of transfer protocols.
+\\ \\
+This article also shows that due to SOAPs extensible nature, the WS-* stack can become overly complex for applications. On the other hand a large library of re-usable software components such as transactions and security-helpers are available for SOAP. The RESTful architectural style does not provide any means for extensions and thus forces applications and frameworks to re-invent the wheel in many cases.
+\\ \\
+The comparison of WADL and WSDL shows that both standards can be used to describe Web services. While WADL is limited to HTTP only, WSDL (2.0) provides a transport-protocol-agnostic alternative which can be used to describe SOAP and also generic Web applications. 
+\\ \\
+The question remains, whether RESTful Web services need a description language at all. Proponents argue that description languages are necessary, because they improve machine-to-machine interaction and provide protocol agreements. Opponents criticize that any means of describing URIs of RESTful resources statically conflict with the key constraints of the paradigm.

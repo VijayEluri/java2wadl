@@ -1,0 +1,22 @@
+\subsection{Problem Space and Requirements}
+
+At the start of the development of the Java2Wadl2Java library (early November 2008), no useful Java libraries for the WADL standard were available. An implementation by Marc Hadley\footnote{\url{https://wadl.dev.java.sun.com}} was in development, but it was too immature and most important of all, incomplete. The decision to implement a toolkit that fully covers the WADL standard with respect to the JAX-RS library was made.
+\\ \\
+The goal of the Java2Wadl2Java library is to provide the following functionality:
+\begin{enumerate}
+\item{{\bf Generate WADL descriptions for JAX-RS resources:} 
+The library must be able to process JAX-RS annotated class-hierarchies and produce WADL descriptions that correspond to the input types. Additionally XML Schemas for depending data models have to be generated.} 
+\item{{\bf Generate JAX-RS resources from WADL descriptions:}
+The library must be able to process WADL descriptions and produce JAX-RS classes and depending data-models. Generated classes have to provide method stubs and inferable type information.}
+\item{{\bf Provide a full WADL-to-Java-to-WADL lifecycle:}
+After 1. and 2. are implemented, a full cycle from WADL to Java to WADL must yield correct results.}
+\end{enumerate}
+The requirements were very much inspired by toolkits for WADLs relative WSDL. These tools provide functionality to create client-stubs for SOAP/WSDL end-points in various languages such as Java and C. One of the main benefits of these tools is that they can be integrated into IDEs, so source code (such as Java classes and corresponding unit tests) can be generated inside the development environment and thus improve development speed.
+\\ \\
+A key constraint at the start of development of the Java2Wadl2Java library was to design entry points that are easily usable for IDEs so that at it would be simple to integrate this library into a GUI for source-code generation at a later time.
+\\ \\
+Additionally the library is designed in a minimalist and pragmatic approach; only two entry points are made available externally and there are no ways to intercept code generation. There are also nearly no compile or run-time dependencies for Java2Wadl2Java. The toolkit only requires the \emph{JSR311-API} for JAX-RS support and the \emph{Tidy}-library to format generated XML code.
+\\
+To run the unit tests an additional library-dependency in the form of \emph{XMLUnit} was introduced to enhance the overall testability of the toolkit.
+\\ \\
+Another requirement for Java2Wadl2Java is to be able to run with a low resource footprint.

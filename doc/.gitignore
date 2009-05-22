@@ -5,3 +5,7 @@
 *.pdf
 *.gz
 *.out
+*.dvi
+*.ps
+*.lof
+*.toc

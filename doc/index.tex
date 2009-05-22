@@ -5,11 +5,13 @@
 \usepackage{graphicx}
 \usepackage{listings}
 
+\bibliographystyle{alpha}
+
 \geometry{verbose,a4paper,tmargin=25mm,bmargin=25mm,lmargin=30mm,rmargin=30mm}
 
 \begin{document}
 
-\title{Java2Wadl2Java - An End to End Solution for Describing RESTful Webservices}
+\title{Java2Wadl2Java - An End to End Solution for Generating Descriptions for RESTful Web Services}
 \author{Andreas Meingast - 0426062/e534}
 
 \date{May 2008}
@@ -28,8 +30,6 @@
 
 \newpage
 
-\bibliographystyle{plain}
-
 \section{Introduction}
 \input{intro.tex}
 
@@ -45,72 +45,37 @@
 \input{wadl.tex}
 
 \subsection{REST/WADL in Comparison to SOAP/WSDL}
-
-Short intro to SOAP/WSDL
-
-general architectural/ideological differences
-
-REST-SOAP differences
-
-SOAP-WSDL differences
-
-Advantages of either protocols
-
-== Quote lots of stuff from "RESTful Web Services vs. “Big” Web Services: Making the Right Architectural Decision " and "Definition Languages for RESTful Web Services:  
-WADL vs. WSDL 2.0 "
+\input{rest_soap.tex}
 
 \section{Design and Implementation}
+\input{requirements.tex}
 
-\subsection{Problem Space and Specific Requirements}
-
-provide an implementation for the WADL standard which produces WADL descriptions for JAX-RS annotated classes and the other way round (generate JAX-RS classes for WADL files)
-
-run on the JVM (specifically the Java language)
-
-minimalize compile and runtime-dependencies
-
-low resources footprint	
-
-separate API from implementation
-
-Agile development, especially TDD
-	
 \subsection{Software Architecture}
+\input{architecture.tex}
 
-Separation of the API from the implementation. (api vs. impl)
-1-1 Mapping of WADL-elements to Java-Classes
-Compiletime library dependencies
-Runtime library dependencies
-
-\subsection{Java2Wadl}
-
-\subsection{Wadl2Java}
-
-\subsection{Java2Wadl2Java}
+\subsection{Java2Wadl2Java Usage}
+TODO
 
 \section{Related Work}
-
-\section{Evaluation}
+\input{related_work.tex}
 
 \section{Conclusion}
-
-Since the purpose of this paper is not to discuss the practicality of REST, but to gain insights on the general usefulness of the description language WADL, 
-
-Abgrenzung!
-
-is WADL pracitcal?
+\input{conclusion.tex}
 
 \newpage
 
 \appendix
 
-\section{RESTful Web Service Example}
+\section{Java-to-WADL Example}
 
-\section{Wadl2Java Example}
+siehe unit tests
 
-\section{Java2Wadl2Java Example}
+\section{WADL-to-Java Example}
 
-\bibliographystyle{alpha}
+siehe unit tests
+
+\newpage
+
 \bibliography{index}
 
 \end{document}
