@@ -1,15 +1,15 @@
-\subsubsection*{API/Implementation}
+\subsubsection{API/Implementation}
 The Java2Wadl2Java library is designed for the JVM and implemented in the Java Programming Language. It was developed specifically for J2SE 6.0.
 \\ \\
 The library is separated into an API and a default implementation. All implementation is written against the API, which makes it easy to exchange critical parts of the system at a later time. More important is the fact that all type information that is available externally has to be part of the API. No implementation-specific information is allowed to leak. Separation of the API from the implementation ensures desirable software properties such as \emph{data hiding} and \emph{programming against interfaces}.
 \\ \\
 API-specific files can be found in \emph{src/main/java/api} and are typically Java Interfaces. The default implementation files are located in \emph{src/main/java/impl}. Unit tests are stored in \emph{src/test/java}.
 
-\subsubsection*{Entry points}
+\subsubsection{Entry points}
 Java2Wadl2Java provides only two Interfaces to access the toolkit: \emph{IJava2Wadl} which is used to generate WADL files from Java classes and \emph{IWadl2Java} which works the other way.
 \\ \\
 \emph{IJava2Wadl} can be accessed with the \emph{generate} method which generates a helper data-structure containing the resulting WADL description and XML schemas.
-\lstset{language=Java, numbers=left, frame=single, tabsize=2, caption=The IJava2Wadl Interface, label=IJava2Wadl}
+\lstset{basicstyle={\footnotesize \ttfamily}, language=Java, numbers=left, frame=none, tabsize=2, caption=The IJava2Wadl Interface, label=IJava2Wadl}
 \begin{lstlisting}
 public interface IJava2Wadl {
 	Wadl generate(Class<?> type) throws WadlException;
@@ -17,17 +17,16 @@ public interface IJava2Wadl {
 	Wadl generate(Class<?> type, String baseUri) 
 		throws WadlException;
 }
-
 \end{lstlisting}
 \emph{IWadl2Java} can be accessed in a similar fashion: \emph{TODO}
-\lstset{language=Java, numbers=left, frame=single, tabsize=2, caption=The IWadl2Java Interface, label=IWadl2Java}
+\lstset{basicstyle={\footnotesize \ttfamily}, language=Java, numbers=left, frame=none, tabsize=2, caption=The IWadl2Java Interface, label=IWadl2Java}
 \begin{lstlisting}
 public interface IJava2Wadl {
 	ToDo todo(ToDo todo) throws WadlException;
 }
 \end{lstlisting}
 
-\subsubsection*{Data Formats}
+\subsubsection{Data Formats}
 Java2Wadl2Java provides a direct Java mapping for WADL language elements in \emph{src/main/java/at/ac/tuwien/infosys/java2wadl/wadl}. 
 \\ \\
 More information on data formats is available as JavaDoc.

@@ -1,0 +1,126 @@
+In this example, a WADL description is generated for generic JAX-RS items resource.
+\\ \\
+The \emph{Item}-class is a container for \textless name,description\textgreater\ elements. For simplicity's sake the generated XML Schema for this class is not included.
+\lstset{basicstyle={\footnotesize \ttfamily}, language=Java, numbers=left, frame=none, tabsize=2, caption=Item Model label=Item.java}
+\begin{lstlisting}
+package at.ac.tuwien.infosys.java2wadl.items;
+
+public class Item {
+	public final String name = "";
+	public final String description = "";
+	
+	public Item(String name, String description) {
+		this.name = name;
+		this.description = description;
+	}
+}
+\end{lstlisting}
+The \emph{ItemsResource}-class is the JAX-RS resource that will be converted into a WADL description.
+
+\lstset{basicstyle={\footnotesize \ttfamily}, language=Java, numbers=left, frame=none, tabsize=2, caption=Items Resource label=Item.java}
+\begin{lstlisting}
+package at.ac.tuwien.infosys.java2wadl.items;
+
+import java.util.*;
+
+import javax.ws.rs.*;
+
+@Path("/items")
+public class ItemsResource {
+	private Map<String, Item> items;
+
+	@GET 
+	@Path("/ids/{itemsid}")
+	@Produces( { "application/json", "application/xml" })
+	public Item getItem(@PathParam("itemsid") String itemId) {
+		return getItems().get(itemId);
+	}
+
+	@PUT 
+	@Path("/ids/{itemsid}")
+	@Consumes( { "application/json", "application/xml" })
+	public void putItem(@PathParam("itemsid") String itemId, 
+			Item item) {
+		getItems().put(itemId, item);
+	}
+
+	@DELETE 
+	@Path("/ids/{itemsid}")
+	public void deleteItem(@PathParam("itemsid") 
+			String itemId) {
+		getItems().remove(itemId);
+	}
+
+	public Map<String, Item> getItems() {
+		if (null == items) {
+			items = new HashMap<String, Item>();
+			items.put("I01", new Item("I01", "Item1."));
+			items.put("I02", new Item("I02", "Item2."));
+		}
+		return items;
+	}
+}
+\end{lstlisting}
+
+The resulting file contains a correct and complete mapping of the Java class to the WADL description.
+\lstset{basicstyle={\footnotesize \ttfamily}, language=XML, frame=none, tabsize=2, caption=Items Resource label=Item.java}
+\begin{lstlisting}
+<?xml version="1.0"?>
+<application xmlns="http://research.sun.com/wadl/2006/10"
+xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <grammars>
+    <include href="at.ac.tuwien.infosys.java2wadl.items.Item.xsd">
+    </include>
+  </grammars>
+
+  <resources base="/base">
+    <resource path="items">
+      <resource path="ids">
+        <resource path="{itemsid}">
+          <method href="#ItemsResource_putItem_String_Item" />
+
+          <method href="#ItemsResource_deleteItem_String" />
+
+          <method href="#ItemsResource_getItem_String" />
+        </resource>
+      </resource>
+    </resource>
+  </resources>
+
+  <method name="PUT" id="ItemsResource_putItem_String_Item">
+    <request>
+      <representation mediaType="application/json"
+      element="j2wns:item">
+      </representation>
+
+      <representation mediaType="application/xml"
+      element="j2wns:item">
+      </representation>
+    </request>
+
+    <response>
+      <representation status="204">
+      </representation>
+    </response>
+  </method>
+
+  <method name="DELETE" id="ItemsResource_deleteItem_String">
+    <response>
+      <representation status="204">
+      </representation>
+    </response>
+  </method>
+
+  <method name="GET" id="ItemsResource_getItem_String">
+    <response>
+      <representation mediaType="application/json"
+      element="j2wns:item" status="200">
+      </representation>
+
+      <representation mediaType="application/xml"
+      element="j2wns:item" status="200">
+      </representation>
+    </response>
+  </method>
+</application>
+\end{lstlisting}

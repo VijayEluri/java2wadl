@@ -1,4 +1,4 @@
-\subsubsection*{Definition}
+\subsubsection{Definition}
 In contrast to SOAP, REST should not be seen as a well-defined protocol or architecture, but as way of "judging architectures". \cite{FIELDING} Therefore the term "RESTful" should be interpreted in the same way as terms like "object-oriented" or "service-oriented"; these expressions do not define interfaces, but provide guidelines on how the software architecture should look like. 
 \\
 Following this definition, it becomes obvious that there can be no single uniform REST standard for all Web services; the only thing REST provides is a set of meta rules for describing resources and means of interaction in applications.
@@ -10,7 +10,7 @@ The name “Representational State Transfer” is intended to evoke an image of how 
 REST is not intended to capture all possible uses of the Web protocol standards. [...] The important point, however, is that REST does capture all of those aspects of a distributed hypermedia system that are considered central to the behavioral and performance requirements of the Web, [...]. \cite{FIELDING}
 \end{quote}
 
-\subsubsection*{Characteristics and Constraints}
+\subsubsection{Characteristics and Constraints}
 \cite{FIELDING} describes six key characteristics for RESTful architectures: 
 
 \begin{itemize}
@@ -42,7 +42,7 @@ Additionally, Fielding shows that REST APIs should not depend on single communic
 \caption{Basic RESTful Architecture}\label{fig:erptsqfit}
 \end{figure}
 
-\subsubsection*{Architectural Elements}
+\subsubsection{Architectural Elements}
 
 \begin{itemize}
 
@@ -57,7 +57,7 @@ REST connectors provide an abstract interface for component communication. They 
 
 \end{itemize}
 
-\subsubsection*{REST on the HTTP}
+\subsubsection{REST on the HTTP}
 One of the key characteristics of the Representational State Transfer idiom is its stateless client/server architecture in which resources can be identified by URIs. These URIs are used in hyperlinks to connect resources. HTTP-based RESTful applications provides access to these resources via HTTP methods: GET, HEAD, PUT, POST, DELETE, OPTIONS.
 \\ \\
 Usually these methods can be mapped directly onto typical CRUD\footnote{Create, Read, Update, Delete}-operations available in databases, but their real semantics depend on the application- and framework-context.
@@ -82,7 +82,7 @@ A general (but incomplete) mapping to CRUD-operations could look like this:
 \\
 Not all applications must necessarily have the same method-semantics. This application uses \emph{PUT} requests to create items, but other applications might as well use \emph{POST}. Since REST does not define which HTTP methods to use, other applications are allowed to use completely different operations for CRUD functionality.
 
-\subsubsection*{A Real World Example: The S3 RESTful Web Service}
+\subsubsection{A Real World Example: The S3 RESTful Web Service}
 
 Essentially S3 is a simple Web Service interface that can be used to store and retrieve any amount of data, at any time from anywhere in the Web. It provides a minimal feature set to read, write and delete an unlimited amount of data-objects. Each object is stored in a bucket and is identified via a unique key.
 \\ \\
