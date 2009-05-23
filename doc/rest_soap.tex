@@ -42,7 +42,7 @@ In contrast to REST, which does not define any means of extension, SOAP offers a
 \\ \\
 Another key distinction between SOAP and REST becomes obvious when looking at the typical application design methodology: 
 \\ \\
-RESTful Web services are designed around resources. First of all resources are identified and mapped onto URLs. Side effect-free operations are mapped on GET, OPTIONS and HEAD and state-modifiyng routines are mapped onto POST, PUT and DELETE. Relationships between resources are expressed with hyperlinks. Finally data representations must be chosen. Applications can be deployed on any compatible Web server (e.g. Apache httpd and mod\_perl). \cite{BIGREST}
+RESTful Web services are designed around resources. First of all resources are identified and mapped onto URIs. Side effect-free operations are mapped on GET, OPTIONS and HEAD and state-modifiyng routines are mapped onto POST, PUT and DELETE. Relationships between resources are expressed with hyperlinks. Finally data representations must be chosen. Applications can be deployed on any compatible Web server (e.g. Apache httpd and mod\_perl). \cite{BIGREST}
 \\ \\
 SOAP Web service development typically starts with the creation of a WSDL file that lists all available services. Then data models for message content are defined with XML schemas and mapped onto a transport protocol. Finally operations are inserted into the WSDL and extensions are configured and installed. Deployment is only possible on compatible Web service containers (e.g. Apache Axis). \cite{BRINGBACKWEB}
 \\ \\

@@ -21,13 +21,13 @@ Since WADL is primarily used for RESTful interfaces this can also be seen as a p
 \subsubsection{Criticism}
 The author of the REST style, Roy T. Fielding, criticizes description languages for RESTful interfaces. He states that RESTful APIs should never have "typed resources that are significant for the client", since the typing information should only be inferred from the current representations media type and standardized relation names.  \cite{FIELDBLOG}
 \\ \\
-Another major point of criticism is the fact that the WADL includes URLs to describe resources \emph{statically}. While this is necessary to describe RESTful applications in WADL, it is also at odds with RESTs primary principle that clients should not rely on fixed namespaces or URLs (i.e. have any link other than the entry point to the application baked into the application).
+Another major point of criticism is the fact that the WADL includes URIs to describe resources \emph{statically}. While this is necessary to describe RESTful applications in WADL, it is also at odds with RESTs primary principle that clients should not rely on fixed namespaces or URIs (i.e. have any link other than the entry point to the application baked into the application).
 \\ \\
 Fielding states:
 \begin{quote}
-Servers must have the freedom to control their own namespace. Instead, allow servers to instruct clients on how to construct appropriate URLs, such as is done in HTML forms and URI templates, by defining those instructions within media types and link relations. \cite{FIELDBLOG}
+Servers must have the freedom to control their own namespace. Instead, allow servers to instruct clients on how to construct appropriate URIs, such as is done in HTML forms and URI templates, by defining those instructions within media types and link relations. \cite{FIELDBLOG}
 \end{quote}
-The idea behind this principle is that it allows services to change URLs or servers without breaking any client code. Once clients rely on static URLs or namespaces, WADL descriptions and depending client code have to be maintained to always match the exact links. In case of major changes to the server application, large parts of the client code have to be thrown away, re-generated and re-implemented.
+The idea behind this principle is that it allows services to change URIs or servers without breaking any client code. Once clients rely on static URIs or namespaces, WADL descriptions and depending client code have to be maintained to always match the exact links. In case of major changes to the server application, large parts of the client code have to be thrown away, re-generated and re-implemented.
 \\
 If, instead, clients use hypertext, link following and request construction based on hypertext, representations and client state, the client-side interface is less likely to break. \cite{GREGBLOG}
 \\ \\
