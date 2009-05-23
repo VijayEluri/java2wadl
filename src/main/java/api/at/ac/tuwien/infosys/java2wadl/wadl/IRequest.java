@@ -45,7 +45,7 @@ public interface IRequest {
 
 	public boolean addRepresentation(IRepresentation representation);
 
-	public boolean isEmpty();
+	boolean isEmpty();
 
 	public String toString();
 

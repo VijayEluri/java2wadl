@@ -2,6 +2,9 @@ package at.ac.tuwien.infosys.java2wadl.wadl;
 
 import java.net.URI;
 
+import at.ac.tuwien.infosys.java2wadl.WadlException;
+import at.ac.tuwien.infosys.java2wadl.util.UriUtil;
+
 /**
  * @see at.ac.tuwien.infosys.java2wadl.wadl.IFaultReference
  * 
@@ -11,6 +14,15 @@ import java.net.URI;
 public class FaultReference implements IFaultReference {
 
 	private URI href;
+	
+	public FaultReference() {
+		
+	}
+	
+	public FaultReference(String uri) throws WadlException {
+		this();
+		setHref(UriUtil.createUri(uri));
+	}
 
 	public URI getHref() {
 		return href;

@@ -1,0 +1,9 @@
+<method
+	name="name"
+	id="id">
+	
+	<request />
+	
+	<response />
+		
+</method>

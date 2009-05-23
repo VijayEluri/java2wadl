@@ -4,6 +4,8 @@ import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
 
+import at.ac.tuwien.infosys.java2wadl.util.StringUtil;
+
 /**
  * @see at.ac.tuwien.infosys.java2wadl.wadl.IParam
  * 
@@ -109,7 +111,9 @@ public class Param implements IParam {
 	}
 
 	public boolean setId(URI id) {
-		this.id = id;
+		if (!StringUtil.isEmpty(id.toString())) {
+			this.id = id;
+		}
 		return true;
 	}
 

@@ -4,6 +4,9 @@ import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
 
+import at.ac.tuwien.infosys.java2wadl.WadlException;
+import at.ac.tuwien.infosys.java2wadl.util.UriUtil;
+
 /**
  * @see at.ac.tuwien.infosys.java2wadl.wadl.IInclude
  * 
@@ -20,6 +23,16 @@ public class Include implements IInclude {
 	 */
 	public Include() {
 		docs = new ArrayList<IDoc>();
+	}
+	
+	public Include(String href) throws WadlException {
+		this(UriUtil.createUri(href));
+	}
+		
+	public Include(URI href) {
+		this();
+		
+		setHref(href);
 	}
 
 	public List<IDoc> getDocs() {

@@ -2,6 +2,9 @@ package at.ac.tuwien.infosys.java2wadl.wadl;
 
 import java.net.URI;
 
+import at.ac.tuwien.infosys.java2wadl.WadlException;
+import at.ac.tuwien.infosys.java2wadl.util.UriUtil;
+
 /**
  * @see at.ac.tuwien.infosys.java2wadl.wadl.IRepresentationReference
  * 
@@ -12,6 +15,13 @@ public class RepresentationReference implements IRepresentationReference {
 
 	private URI href;
 
+	public RepresentationReference() {}
+	
+	public RepresentationReference(String uri) throws WadlException {
+		this();
+		setHref(UriUtil.createUri(uri));
+	}
+	
 	public URI getHref() {
 		return href;
 	}

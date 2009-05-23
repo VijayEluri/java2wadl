@@ -9,6 +9,9 @@ import org.custommonkey.xmlunit.XMLTestCase;
 import org.junit.Test;
 import org.xml.sax.SAXException;
 
+import at.ac.tuwien.infosys.java2wadl.Java2Wadl;
+import at.ac.tuwien.infosys.java2wadl.Wadl;
+import at.ac.tuwien.infosys.java2wadl.WadlException;
 import at.ac.tuwien.infosys.java2wadl.customerservice.CustomerService;
 import at.ac.tuwien.infosys.java2wadl.helloworld.HelloWorldResource;
 import at.ac.tuwien.infosys.java2wadl.items.ItemsResource;

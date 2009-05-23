@@ -4,6 +4,9 @@ import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
 
+import at.ac.tuwien.infosys.java2wadl.WadlException;
+import at.ac.tuwien.infosys.java2wadl.util.UriUtil;
+
 /**
  * @see at.ac.tuwien.infosys.java2wadl.wadl.IResources
  * 
@@ -22,6 +25,11 @@ public class Resources implements IResources {
 	public Resources() {
 		docs = new ArrayList<IDoc>();
 		resources = new ArrayList<IResource>();
+	}
+	
+	public Resources(String uri) throws WadlException {
+		this();
+		setBase(UriUtil.createUri(uri));
 	}
 
 	public URI getBase() {

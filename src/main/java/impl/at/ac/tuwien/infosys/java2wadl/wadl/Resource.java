@@ -4,6 +4,8 @@ import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
 
+import at.ac.tuwien.infosys.java2wadl.util.StringUtil;
+
 /**
  * @see at.ac.tuwien.infosys.java2wadl.wadl.IResource
  * 
@@ -106,7 +108,9 @@ public class Resource implements IResource {
 	}
 
 	public boolean setId(URI id) {
-		this.id = id;
+		if (!StringUtil.isEmpty(id.toString())) {
+			this.id = id;
+		}
 		return true;
 	}
 

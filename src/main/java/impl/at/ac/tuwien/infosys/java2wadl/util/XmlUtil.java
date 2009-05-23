@@ -12,6 +12,7 @@ import java.io.StringWriter;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.net.URI;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -34,6 +35,8 @@ import javax.xml.transform.stream.StreamResult;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
 import org.w3c.tidy.Configuration;
 import org.w3c.tidy.Tidy;
 import org.xml.sax.SAXException;
@@ -219,5 +222,48 @@ public class XmlUtil {
 		tidy.setXmlTags(true);
 
 		return tidy;
+	}
+
+	public static void iterate(NodeList nodeList, F<Node> f) throws WadlException {
+		CollectionUtil.iterate(toList(nodeList), f);
+	}
+
+	public static List<Node> toList(NodeList nodeList) {
+		List<Node> list = new ArrayList<Node>(nodeList.getLength());
+
+		for (int i = 0; i < nodeList.getLength(); i++) {
+			list.add(nodeList.item(i));
+		}
+
+		return list;
+	}
+
+	public static String getNodeAttribute(Node node, String attributeName) {
+		if (node == null || node.getAttributes() == null || node.getAttributes().getNamedItem(attributeName) == null) {
+			return "";
+		}
+		String attributeValue = node.getAttributes().getNamedItem(attributeName).getTextContent();
+
+		return null == attributeValue ? "" : attributeValue;
+	}
+
+	public static List<Node> getChildNodes(Node node, String nodeName) {
+		List<Node> childNodes = new ArrayList<Node>();
+
+		for (Node childNode : toList(node.getChildNodes())) {
+			if (childNode.getNodeName().equals(nodeName)) {
+				childNodes.add(childNode);
+			}
+		}
+
+		return childNodes;
+	}
+
+	public static boolean hasChildNode(Node node, String nodeName) {
+		return getChildNodes(node, nodeName).isEmpty();
+	}
+
+	public static boolean hasNodeAttribute(Node node, String nodeName) {
+		return node.getAttributes().getNamedItem(nodeName) != null;
 	}
 }

@@ -1,4 +1,4 @@
-package at.ac.tuwien.infosys.java2wadl;
+package at.ac.tuwien.infosys;
 
 import static org.junit.Assert.*;
 

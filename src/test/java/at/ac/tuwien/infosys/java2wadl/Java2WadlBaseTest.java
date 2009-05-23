@@ -5,8 +5,7 @@ import static at.ac.tuwien.infosys.java2wadl.util.StringUtil.stripWhiteSpaces;
 
 import java.io.FileNotFoundException;
 
-import junit.framework.TestCase;
-
+import org.custommonkey.xmlunit.XMLTestCase;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -14,7 +13,7 @@ import org.junit.Test;
  * @author <a href="mailto:e0426062@student.tuwien.ac.at">Andreas Meingast</a>
  * @author <a href="mailto:e0325672@student.tuwien.ac.at">Anton Korosec</a>
  */
-public class BaseTest extends TestCase {
+public class Java2WadlBaseTest extends XMLTestCase {
 
 	protected IJava2Wadl java2Wadl;
 

@@ -6,6 +6,7 @@ import javax.ws.rs.Path;
 @Path("/sub")
 public class SubResource extends SuperResource {
 
+	@SuppressWarnings("unused")
 	private TestObj obj = null;
 
 	@POST

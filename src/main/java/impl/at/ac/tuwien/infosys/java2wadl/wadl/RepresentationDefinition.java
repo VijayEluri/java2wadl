@@ -4,6 +4,8 @@ import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
 
+import at.ac.tuwien.infosys.java2wadl.util.StringUtil;
+
 /**
  * @see at.ac.tuwien.infosys.java2wadl.wadl.IRepresentationDefinition
  * 
@@ -96,7 +98,9 @@ public class RepresentationDefinition implements IRepresentationDefinition {
 	}
 
 	public boolean setId(URI id) {
-		this.id = id;
+		if (!StringUtil.isEmpty(id.toString())) {
+			this.id = id;
+		}
 		return true;
 	}
 

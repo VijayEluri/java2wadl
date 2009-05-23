@@ -1,0 +1,35 @@
+<container>
+<request>
+	<representation 
+		id="id"
+		mediaType="text"
+		element="element"
+		profile="profile"
+		status="0">
+		
+		<param 
+			name="name" 
+			id="id" 
+			style="plain" 
+			type="type" 
+			default="default" 
+			path="path" 
+			required="false" 
+			repeating="false"
+			fixed="fixed" />
+	</representation>
+</request>
+
+<request>
+	<param 
+		name="name" 
+		id="id" 
+		style="plain" 
+		type="type" 
+		default="default" 
+		path="path" 
+		required="false" 
+		repeating="false"
+		fixed="fixed" />
+</request>
+</container>

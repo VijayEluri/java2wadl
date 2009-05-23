@@ -15,6 +15,7 @@ import javax.ws.rs.PUT;
 import at.ac.tuwien.infosys.java2wadl.util.AssertUtil;
 import at.ac.tuwien.infosys.java2wadl.util.ReflectionUtil;
 import at.ac.tuwien.infosys.java2wadl.util.UriUtil;
+import at.ac.tuwien.infosys.java2wadl.util.WadlUtil;
 import at.ac.tuwien.infosys.java2wadl.wadl.HTTPMethod;
 import at.ac.tuwien.infosys.java2wadl.wadl.IApplication;
 import at.ac.tuwien.infosys.java2wadl.wadl.IMethodDefinition;
@@ -80,19 +81,7 @@ public class MethodHandler {
 		if (ReflectionUtil.containsClass(declaredAnnotations, HttpMethod.class)) {
 			String value = method.getAnnotation(HttpMethod.class).value();
 
-			if (value.equals("DELETE")) {
-				return HTTPMethod.DELETE;
-			} else if (value.equals("GET")) {
-				return HTTPMethod.GET;
-			} else if (value.equals("POST")) {
-				return HTTPMethod.POST;
-			} else if (value.equals("PUT")) {
-				return HTTPMethod.PUT;
-			} else if (value.equals("HEAD")) {
-				return HTTPMethod.HEAD;
-			} else {
-				return null;
-			}
+			return WadlUtil.toHttpMethod(value);
 
 		} else if (ReflectionUtil.containsClass(declaredAnnotations, DELETE.class)) {
 			return HTTPMethod.DELETE;
@@ -108,4 +97,5 @@ public class MethodHandler {
 
 		return null;
 	}
+
 }

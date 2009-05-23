@@ -1,0 +1,10 @@
+<param 
+	name="name" 
+	id="id" 
+	style="plain" 
+	type="type" 
+	default="default" 
+	path="path" 
+	required="false" 
+	repeating="false"
+	fixed="fixed" />
