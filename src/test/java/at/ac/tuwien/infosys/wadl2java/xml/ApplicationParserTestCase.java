@@ -2,17 +2,13 @@ package at.ac.tuwien.infosys.wadl2java.xml;
 
 import java.io.FileNotFoundException;
 
-import org.custommonkey.xmlunit.Diff;
-import org.custommonkey.xmlunit.ElementNameAndAttributeQualifier;
 import org.junit.Test;
 
+import at.ac.tuwien.infosys.BaseTest;
 import at.ac.tuwien.infosys.java2wadl.Consts;
 import at.ac.tuwien.infosys.java2wadl.WadlException;
-import at.ac.tuwien.infosys.java2wadl.util.XmlUtil;
-import at.ac.tuwien.infosys.java2wadl.wadl.IApplication;
-import at.ac.tuwien.infosys.wadl2java.Wadl2JavaBaseTest;
 
-public class ApplicationParserTestCase extends Wadl2JavaBaseTest {
+public class ApplicationParserTestCase extends BaseTest {
 
 	@Test
 	public void testResponse() throws FileNotFoundException, WadlException {
@@ -47,15 +43,6 @@ public class ApplicationParserTestCase extends Wadl2JavaBaseTest {
 	private void assertParse(String fileName) throws FileNotFoundException, WadlException {
 		String xml = loadResource(fileName);
 
-		IApplicationParser applicationParser = new ApplicationParser();
-		IApplication application = applicationParser.parse(xml);
-		Diff diff;
-		try {
-			diff = new Diff(xml, XmlUtil.tidyXml(Consts.xml_header + application.toString()));
-		} catch (Exception e) {
-			throw new WadlException(e);
-		}
-		diff.overrideElementQualifier(new ElementNameAndAttributeQualifier());
-		assertXMLEqual(diff, true);
+		assertXmlEquals(xml, Consts.xml_header + new ApplicationParser().parse(xml).toString());
 	}
 }

@@ -7,14 +7,14 @@ import java.util.List;
 import org.junit.Test;
 import org.w3c.dom.Node;
 
+import at.ac.tuwien.infosys.BaseTest;
 import at.ac.tuwien.infosys.java2wadl.WadlException;
 import at.ac.tuwien.infosys.java2wadl.util.XPathUtil;
 import at.ac.tuwien.infosys.java2wadl.util.XmlUtil;
 import at.ac.tuwien.infosys.java2wadl.wadl.IInclude;
-import at.ac.tuwien.infosys.wadl2java.Wadl2JavaBaseTest;
 
-public class GrammarsParserTest extends Wadl2JavaBaseTest {
-	
+public class GrammarsParserTest extends BaseTest {
+
 	@Test
 	public void testPresentInclude() throws FileNotFoundException, WadlException {
 		assertIncludesPresent(loadResource("at.ac.tuwien.infosys.java2wadl.items.ItemsResource.txt"),
@@ -28,12 +28,10 @@ public class GrammarsParserTest extends Wadl2JavaBaseTest {
 
 	private void assertIncludesPresent(String xml, String... includeNames) throws WadlException {
 		List<Node> grammarNodes = XmlUtil.toList(XPathUtil.query(xml, "/wadl:application/wadl:grammars"));
-		
+
 		assertEquals(1, grammarNodes.size());
-		for (Node grammarNode : grammarNodes) {
-			for (String includeName : includeNames) {
-				assertContainsInclude(new GrammarsParser().parse(grammarNode).getIncludes(), includeName);
-			}
+		for (String includeName : includeNames) {
+			assertContainsInclude(new GrammarsParser().parse(grammarNodes.get(0)).getIncludes(), includeName);
 		}
 	}
 

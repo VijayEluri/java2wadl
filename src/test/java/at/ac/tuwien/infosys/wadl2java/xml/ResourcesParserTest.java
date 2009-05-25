@@ -6,13 +6,13 @@ import java.util.List;
 import org.junit.Test;
 import org.w3c.dom.Node;
 
+import at.ac.tuwien.infosys.BaseTest;
 import at.ac.tuwien.infosys.java2wadl.WadlException;
 import at.ac.tuwien.infosys.java2wadl.util.UriUtil;
 import at.ac.tuwien.infosys.java2wadl.util.XPathUtil;
 import at.ac.tuwien.infosys.java2wadl.util.XmlUtil;
-import at.ac.tuwien.infosys.wadl2java.Wadl2JavaBaseTest;
 
-public class ResourcesParserTest extends Wadl2JavaBaseTest {
+public class ResourcesParserTest extends BaseTest {
 
 	@Test
 	public void testSetBaseUrl() throws FileNotFoundException, WadlException {

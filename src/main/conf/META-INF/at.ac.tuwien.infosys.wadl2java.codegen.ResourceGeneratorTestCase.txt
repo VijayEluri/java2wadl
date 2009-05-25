@@ -1,0 +1,83 @@
+<?xml version="1.0"?>
+<application xmlns="http://research.sun.com/wadl/2006/10"
+xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <grammars>
+  </grammars>
+
+  <resources base="/base">
+    <resource path="bla">
+      <method href="#TestRequestResource_doBlaMatrix_String" />
+
+      <method href="#TestRequestResource_doBlaQuery_String" />
+
+      <method href="#TestRequestResource_doBlaDef_String" />
+
+      <method href="#TestRequestResource_delete_boolean" />
+
+      <resource path="{version}">
+        <resource path="{entry}">
+          <method href="#TestRequestResource_getBla_String_int" />
+        </resource>
+      </resource>
+    </resource>
+  </resources>
+
+  <method name="GET" id="TestRequestResource_getBla_String_int">
+    <response>
+      <param name="String" style="header" type="xs:string">
+      </param>
+    </response>
+  </method>
+
+  <method name="POST" id="TestRequestResource_doBlaMatrix_String">
+    <request>
+      <param name="String_0" style="matrix" type="xs:string"
+      required="true">
+      </param>
+    </request>
+
+    <response>
+      <representation status="204">
+      </representation>
+    </response>
+  </method>
+
+  <method name="POST" id="TestRequestResource_doBlaQuery_String">
+    <request>
+      <param name="format" style="query" type="xs:string"
+      required="true">
+      </param>
+    </request>
+
+    <response>
+      <representation status="204">
+      </representation>
+    </response>
+  </method>
+
+  <method name="POST" id="TestRequestResource_doBlaDef_String">
+    <request>
+      <param name="String_0" type="xs:string" default="bla"
+      required="true">
+      </param>
+    </request>
+
+    <response>
+      <representation status="204">
+      </representation>
+    </response>
+  </method>
+
+  <method name="DELETE" id="TestRequestResource_delete_boolean">
+    <request>
+      <param name="all" style="query" type="xs:boolean"
+      default="true" required="true">
+      </param>
+    </request>
+
+    <response>
+      <representation status="204">
+      </representation>
+    </response>
+  </method>
+</application>

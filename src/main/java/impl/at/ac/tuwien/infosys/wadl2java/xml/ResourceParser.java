@@ -17,8 +17,8 @@ public class ResourceParser {
 	public IResource parse(Node node) throws WadlException {
 		IResource resource = new Resource();
 
-		resource.setId(UriUtil.createUri(XmlUtil.getNodeAttribute(node, "id")));
 		resource.setPath(XmlUtil.getNodeAttribute(node, "path"));
+		resource.setId(UriUtil.createUri(XmlUtil.getNodeAttribute(node, "id")));
 		resource.setType(parseTypes(node));
 		resource.setQueryType(XmlUtil.getNodeAttribute(node, "queryType"));
 

@@ -28,7 +28,7 @@ import at.ac.tuwien.infosys.java2wadl.wadl.Resource;
  * @author <a href="mailto:e0426062@student.tuwien.ac.at">Andreas Meingast</a>
  * @author <a href="mailto:e0325672@student.tuwien.ac.at">Anton Korosec</a>
  */
-public class ResourceClassParser {
+class ResourceClassParser {
 	@SuppressWarnings("unchecked")
 	private static Class<? extends Annotation>[] RESOURCE_METHOD_ANNOTATIONS = new Class[] { Path.class,
 			HttpMethod.class, DELETE.class, GET.class, POST.class, PUT.class, HEAD.class };
@@ -37,7 +37,7 @@ public class ResourceClassParser {
 	private static final Class<? extends Annotation>[] HTTP_METHOD_ANNOTATIONS = new Class[] { HttpMethod.class,
 			DELETE.class, GET.class, POST.class, PUT.class, HEAD.class };
 
-	private static List<Class<?>> visitedTypes = new ArrayList<Class<?>>();
+	private List<Class<?>> visitedTypes = new ArrayList<Class<?>>();
 
 	/**
 	 * Processes a given Java-class and enhances the given WADL-application with the information (resources, methods,

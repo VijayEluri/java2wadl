@@ -1,0 +1,51 @@
+package test;
+
+import javax.ws.rs.*;
+
+@Path("customerservice")
+public class CustomerService {
+
+	@GET
+	public Customers getCustomers() {
+		// TODO: Auto-generated method stub
+		return null;
+	}
+
+	@POST
+	@Path("/customers")
+	public Response addCustomer(Customer customer) throws WebApplicationException {
+		// TODO: Auto-generated method stub
+		return null;
+	}
+
+	@GET
+	@Path("/customers/{id}")
+	@Produces("application/xml")
+	public Customer getCustomerXML(@PathParam("id") String id) {
+		// TODO: Auto-generated method stub
+		return null;
+	}
+
+	@PUT
+	@Path("/customers/{id}")
+	@Consumes("application/xml")
+	public Response updateCustomerXML(@PathParam("id") String id, Customer customer) {
+		// TODO: Auto-generated method stub
+		return null;
+	}
+
+	@DELETE
+	@Path("/customers/{id}")
+	public Response deleteCustomer(@PathParam("id") String id) {
+		// TODO: Auto-generated method stub
+		return null;
+	}
+
+	@GET
+	@Path("/orders/{orderId}/products/{productId}")
+	public Product getProduct(@PathParam("orderId") String orderId, @PathParam("productId") String productId) {
+		// TODO: Auto-generated method stub
+		return null;
+	}
+
+}

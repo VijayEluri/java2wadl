@@ -5,7 +5,7 @@ import static at.ac.tuwien.infosys.java2wadl.util.AssertUtil.assertNotNull;
 import java.util.List;
 
 import at.ac.tuwien.infosys.java2wadl.WadlException;
-import at.ac.tuwien.infosys.wadl2java.cogeden.JavaGenerator;
+import at.ac.tuwien.infosys.wadl2java.codegen.JavaGenerator;
 import at.ac.tuwien.infosys.wadl2java.xml.ApplicationParser;
 
 public class Wadl2Java implements IWadl2Java {
@@ -14,6 +14,6 @@ public class Wadl2Java implements IWadl2Java {
 		assertNotNull(wadlSchema);
 		assertNotNull(packageName);
 
-		return new JavaGenerator(packageName, new ApplicationParser().parse(wadlSchema)).generate();
+		return new JavaGenerator().generate(packageName, new ApplicationParser().parse(wadlSchema));
 	}
 }

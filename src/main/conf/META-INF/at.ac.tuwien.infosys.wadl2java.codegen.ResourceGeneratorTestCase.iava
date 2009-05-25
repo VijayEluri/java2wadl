@@ -1,0 +1,35 @@
+package test.package;
+
+import javax.ws.rs.*;
+
+@Path("bla")
+public class TestRequestResource {
+
+	@POST
+	public void doBlaMatrix(@MatrixParam("String_0") @DefaultValue("") String String_0) {
+		// TODO: Auto-generated method stub
+	}
+
+	@POST
+	public void doBlaQuery(@QueryParam("format") @DefaultValue("") String format) {
+		// TODO: Auto-generated method stub
+	}
+
+	@POST
+	public void doBlaDef(@DefaultValue("bla") String String_0) {
+		// TODO: Auto-generated method stub
+	}
+
+	@DELETE
+	public void delete(@QueryParam("all") @DefaultValue("true") Boolean all) {
+		// TODO: Auto-generated method stub
+	}
+
+	@GET
+	@Path("/{version}/{entry}")
+	public String getBla(@PathParam("version") String version, @PathParam("entry") String entry) {
+		// TODO: Auto-generated method stub
+		return null;
+	}
+
+}

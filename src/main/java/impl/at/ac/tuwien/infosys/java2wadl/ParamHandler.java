@@ -19,7 +19,7 @@ import at.ac.tuwien.infosys.java2wadl.wadl.ParamStyle;
  * @author <a href="mailto:e0426062@student.tuwien.ac.at">Andreas Meingast</a>
  * @author <a href="mailto:e0325672@student.tuwien.ac.at">Anton Korosec</a>
  */
-public class ParamHandler {
+class ParamHandler {
 	/**
 	 * Search a given list of annotations for a parameterStyle-annotation annotation and return the appropriate
 	 * parameter style.

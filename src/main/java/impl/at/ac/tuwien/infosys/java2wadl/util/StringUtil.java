@@ -100,4 +100,33 @@ public class StringUtil {
 
 		return tokens;
 	}
+
+	public static String collectUntil(String s, char splitter) {
+		if (isEmpty(s)) {
+			return "";
+		}
+
+		StringBuffer sb = new StringBuffer();
+
+		for (int i = 0; i < s.length(); i++) {
+			if (s.charAt(i) == splitter) {
+				break;
+			}
+
+			sb.append(s.charAt(i));
+		}
+
+		return sb.toString();
+	}
+
+	public static String capitalize(String s) {
+		if (isEmpty(s)) {
+			return "";
+		}
+
+		String firstLetter = s.substring(0, 1).toUpperCase();
+		String rest = s.length() > 0 ? s.substring(1) : "";
+		
+		return firstLetter + rest;
+	}
 }

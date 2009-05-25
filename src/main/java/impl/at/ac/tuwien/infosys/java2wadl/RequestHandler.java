@@ -24,7 +24,7 @@ import at.ac.tuwien.infosys.java2wadl.wadl.Request;
  * @author <a href="mailto:e0426062@student.tuwien.ac.at">Andreas Meingast</a>
  * @author <a href="mailto:e0325672@student.tuwien.ac.at">Anton Korosec</a>
  */
-public class RequestHandler {
+class RequestHandler {
 	/**
 	 * Create a Request-instance for a given Java-method.
 	 * 

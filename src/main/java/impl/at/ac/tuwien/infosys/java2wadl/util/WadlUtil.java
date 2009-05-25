@@ -35,4 +35,34 @@ public class WadlUtil {
 			return null;
 		}
 	}
+
+	public static String fromParamStyle(String xmlRepresentation) {
+		ParamStyle style = toParamStyle(xmlRepresentation);
+		
+		if (null != style) {
+			return fromParamStyle(style);
+		}
+		return "";
+	}
+	
+	public static String fromParamStyle(ParamStyle style) {
+		switch (style) {
+			case plain:
+				return "MatrixParam";
+			case header:
+				return "HeaderParam";
+			case query:
+				return "QueryParam";
+			case matrix:
+				return "MatrixParam";
+			case template:
+				return "TemplateParam";
+			default:
+				return "";
+		}
+	}
+	
+	public static boolean isJava2WadlName(String name) {
+		return name.matches("(\\S+_\\S*)+");
+	}
 }

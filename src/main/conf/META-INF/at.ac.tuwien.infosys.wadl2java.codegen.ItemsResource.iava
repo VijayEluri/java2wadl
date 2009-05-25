@@ -1,0 +1,42 @@
+package test;
+
+import javax.ws.rs.*;
+
+@Path("items")
+public class ItemsResource {
+
+	@PUT
+	@Path("/ids/{itemsid}")
+	@Consumes("application/json")
+	public void putItemJSON(@PathParam("itemsid") String itemsid, Item item) {
+		// TODO: Auto-generated method stub
+	}
+	@PUT
+	@Path("/ids/{itemsid}")
+	@Consumes("application/xml")
+	public void putItemXML(@PathParam("itemsid") String itemsid, Item item) {
+		// TODO: Auto-generated method stub
+	}
+
+	@DELETE
+	@Path("/ids/{itemsid}")
+	public void deleteItem(@PathParam("itemsid") String itemsid) {
+		// TODO: Auto-generated method stub
+	}
+
+	@GET
+	@Path("/ids/{itemsid}")
+	@Produces("application/json")
+	public Item getItemJSON(@PathParam("itemsid") String itemsid) {
+		// TODO: Auto-generated method stub
+		return null;
+	}
+	@GET
+	@Path("/ids/{itemsid}")
+	@Produces("application/xml")
+	public Item getItemXML(@PathParam("itemsid") String itemsid) {
+		// TODO: Auto-generated method stub
+		return null;
+	}
+
+}

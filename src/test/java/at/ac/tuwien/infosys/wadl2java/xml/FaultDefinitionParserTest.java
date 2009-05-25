@@ -8,15 +8,15 @@ import java.util.List;
 import org.junit.Test;
 import org.w3c.dom.Node;
 
+import at.ac.tuwien.infosys.BaseTest;
 import at.ac.tuwien.infosys.java2wadl.WadlException;
 import at.ac.tuwien.infosys.java2wadl.util.UriUtil;
 import at.ac.tuwien.infosys.java2wadl.util.XPathUtil;
 import at.ac.tuwien.infosys.java2wadl.util.XmlUtil;
 import at.ac.tuwien.infosys.java2wadl.wadl.IFaultDefinition;
 import at.ac.tuwien.infosys.java2wadl.wadl.IParam;
-import at.ac.tuwien.infosys.wadl2java.Wadl2JavaBaseTest;
 
-public class FaultDefinitionParserTest extends Wadl2JavaBaseTest {
+public class FaultDefinitionParserTest extends BaseTest {
 
 	public static void assertEqualsFaultDefinitionFixture(IFaultDefinition faultDefinition) throws WadlException {
 		assertEquals(UriUtil.createUri("id"), faultDefinition.getId());
@@ -36,8 +36,6 @@ public class FaultDefinitionParserTest extends Wadl2JavaBaseTest {
 		List<Node> resultNodes = XmlUtil.toList(XPathUtil.query(xml, "//fault[1]"));
 
 		assertEquals(1, resultNodes.size());
-		for (Node resultNode : resultNodes) {
-			assertEqualsFaultDefinitionFixture(new FaultDefinitionParser().parse(resultNode));
-		}
+		assertEqualsFaultDefinitionFixture(new FaultDefinitionParser().parse(resultNodes.get(0)));
 	}
 }

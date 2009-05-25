@@ -1,0 +1,7 @@
+@GET
+@Path("/extraNamespace/{id}")
+public String getMessage(@PathParam("id") String id) {
+	// TODO: Auto-generated method stub
+	return null;
+}
+

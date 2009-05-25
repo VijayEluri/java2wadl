@@ -1,5 +1,7 @@
 package at.ac.tuwien.infosys.wadl2java.xml;
 
+import static at.ac.tuwien.infosys.java2wadl.util.AssertUtil.assertNotNull;
+
 import org.w3c.dom.Node;
 
 import at.ac.tuwien.infosys.java2wadl.WadlException;
@@ -9,9 +11,11 @@ import at.ac.tuwien.infosys.java2wadl.wadl.Application;
 import at.ac.tuwien.infosys.java2wadl.wadl.IApplication;
 
 public class ApplicationParser implements IApplicationParser {
-	
+
 	@Override
 	public IApplication parse(String wadlSchema) throws WadlException {
+		assertNotNull(wadlSchema);
+
 		IApplication application = new Application();
 
 		parseGrammars(wadlSchema, application);
@@ -56,8 +60,8 @@ public class ApplicationParser implements IApplicationParser {
 	}
 
 	private void parseResourceTypes(String wadlSchema, IApplication application) throws WadlException {
-		for (Node resourceTypeNode : XmlUtil
-				.toList(XPathUtil.query(wadlSchema, "/wadl:application/wadl:representation"))) {
+		for (Node resourceTypeNode : XmlUtil.toList(XPathUtil
+				.query(wadlSchema, "/wadl:application/wadl:representation"))) {
 			application.addResource_type(new ResourceTypeParser().parse(resourceTypeNode));
 		}
 	}

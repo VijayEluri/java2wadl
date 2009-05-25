@@ -1,0 +1,15 @@
+<?xml version="1.0"?> 
+<application xmlns="http://research.sun.com/wadl/2006/10" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <resources base="/base">
+    <resource path="helloworld">
+      <method href="#HelloWorldResource_getMessage_" />
+    </resource>
+  </resources>
+
+  <method name="GET" id="HelloWorldResource_getMessage_">
+    <response>
+      <param name="String" style="header" type="xs:string">
+      </param>
+    </response>
+  </method>
+</application>

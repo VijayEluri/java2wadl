@@ -6,14 +6,14 @@ import java.util.List;
 import org.junit.Test;
 import org.w3c.dom.Node;
 
+import at.ac.tuwien.infosys.BaseTest;
 import at.ac.tuwien.infosys.java2wadl.WadlException;
 import at.ac.tuwien.infosys.java2wadl.util.UriUtil;
 import at.ac.tuwien.infosys.java2wadl.util.XPathUtil;
 import at.ac.tuwien.infosys.java2wadl.util.XmlUtil;
 import at.ac.tuwien.infosys.java2wadl.wadl.IRepresentationReference;
-import at.ac.tuwien.infosys.wadl2java.Wadl2JavaBaseTest;
 
-public class RepresentationReferenceParserTest extends Wadl2JavaBaseTest {
+public class RepresentationReferenceParserTest extends BaseTest {
 
 	@Test
 	public static void assertEqualsRepresentationReferenceFixture(IRepresentationReference representationReference)
@@ -27,8 +27,6 @@ public class RepresentationReferenceParserTest extends Wadl2JavaBaseTest {
 		List<Node> resultNodes = XmlUtil.toList(XPathUtil.query(xml, "//*[1]"));
 
 		assertEquals(1, resultNodes.size());
-		for (Node node : resultNodes) {
-			assertEqualsRepresentationReferenceFixture(new RepresentationReferenceParser().parse(node));
-		}
+		assertEqualsRepresentationReferenceFixture(new RepresentationReferenceParser().parse(resultNodes.get(0)));
 	}
 }

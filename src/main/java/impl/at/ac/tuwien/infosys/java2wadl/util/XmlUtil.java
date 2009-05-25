@@ -15,6 +15,7 @@ import java.net.URI;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -71,7 +72,7 @@ public class XmlUtil {
 		schemaCache.clear();
 	}
 
-	private static final Map<Class<?>, String> classToXmlSchemaMap = new ConcurrentHashMap<Class<?>, String>() {
+	private static final Map<Class<?>, String> classToXmlSchemaMap = new HashMap<Class<?>, String>() {
 		{
 			put(boolean.class, Consts.xml_schema_ns_prefix + "boolean");
 			put(Boolean.class, Consts.xml_schema_ns_prefix + "boolean");
@@ -96,6 +97,16 @@ public class XmlUtil {
 		}
 	};
 
+	private static final Map<String, Class<?>> xmlSchemaToClassMap = new HashMap<String, Class<?>>() {
+		{
+			for (Class<?> c : classToXmlSchemaMap.keySet()) {
+				if (!c.isPrimitive()) {
+					put(classToXmlSchemaMap.get(c), c);
+				}
+			}
+		}
+	};
+
 	/**
 	 * Create a xml-schema from a given Java-type and save it to a file.
 	 * 
@@ -105,7 +116,7 @@ public class XmlUtil {
 	 *            The directory where the schema-File should be created.
 	 * @throws WadlException
 	 */
-	public static void generateSchema(final Class<?> type) throws WadlException {
+	public static String generateSchema(final Class<?> type) throws WadlException {
 		assertNotNull(type);
 
 		final ByteArrayOutputStream os = new ByteArrayOutputStream();
@@ -130,6 +141,7 @@ public class XmlUtil {
 		}
 
 		schemaCache.put(getSchemaName(type), schemaContent);
+		return schemaContent;
 	}
 
 	/**
@@ -180,6 +192,16 @@ public class XmlUtil {
 		return classToXmlSchemaMap.get(type);
 	}
 
+	public static String getJavaTypeForXsdType(String xsdType) {
+		assertNotNull(xsdType);
+
+		if (xmlSchemaToClassMap.containsKey(xsdType)) {
+			return xmlSchemaToClassMap.get(xsdType).getSimpleName();
+		} else {
+			return "";
+		}
+	}
+
 	/**
 	 * Check if the given type is a primitive Java-type.
 	 * 
@@ -222,10 +244,6 @@ public class XmlUtil {
 		tidy.setXmlTags(true);
 
 		return tidy;
-	}
-
-	public static void iterate(NodeList nodeList, F<Node> f) throws WadlException {
-		CollectionUtil.iterate(toList(nodeList), f);
 	}
 
 	public static List<Node> toList(NodeList nodeList) {
