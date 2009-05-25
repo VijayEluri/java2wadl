@@ -5,21 +5,21 @@ A Web service is a software system designed to support interoperable machine-to-
 \end{quote}
 The W3C also defines several key components present in Web services (also see Figure 1):
 \\ \\
-A Web \emph{service} is an "abstract notion", that is implemented by a concrete \emph{agent}. This means that the service part is the API of the application, while the agent is a concrete piece of software that provides functionality for the API. 
+A Web \emph{service} is an "abstract notion" which is implemented by a concrete \emph{agent}. This means that the service part is the API of the application, while the agent is a concrete piece of software that provides functionality for the API. 
 \begin{figure}[htp]
 \centering
 \includegraphics[scale=0.9]{img/web_services.pdf}
 \caption{Simplified Web Service Architecture}\label{fig:erptsqfit}
 \end{figure}
 \\
-A \emph{requester} is an entity that wishes to make use of a service, while a \emph{provider} is an entity that offers an appropriate agent which implements a particular service. 
+A \emph{requester} is an entity which wishes to make use of a service while a \emph{provider} is an entity which offers an appropriate agent which implements a particular service. 
 \\ \\
 The \emph{Web service description} is a machine-processable specification of the Web service's interface. Amongst other things it defines message format, datatypes and network locations for agents. 
 \\ \\
 The \emph{semantics} of a Web service is the shared expectation about the behavior of the service, in particular in response to messages that are sent to it. \cite{WSARCH}
 
 \subsubsection{HTTP-based Web Services}
-According to this definition, frameworks such as CORBA, DCOM and RMI fall into the Web service category. These middleware platforms provide a solid, well tested and well documented set of tools to compose applications. Still, HTTP based Web services offer several advantages and have gained popularity over classical frameworks in recent years, which is one of the reasons, why the term Web services is nowadays commonly used to describe a client/server architecture that communicates over the Hypertext Transfer Protocol.
+According to this definition frameworks such as CORBA, DCOM and RMI fall into the Web service category. These middleware platforms provide a solid, well tested and well documented set of tools to compose applications. Still, HTTP based Web services offer several advantages and have gained popularity over classical frameworks in recent years, which is one of the reasons why the term Web services is nowadays commonly used to describe a client/server architecture that communicates over the Hypertext Transfer Protocol.
 \begin{figure}[htp]
 \centering
 \includegraphics[scale=0.80]{img/http_web_services.pdf}
@@ -32,6 +32,6 @@ The combination of HTTP and XML therefore decouples components with a general pu
 \\ \\
 Since these Web services communicate directly over HTTP, a number of optimization techniques typically used in Web applications can be exploited to make HTTP-based Web services scale. (Partial) Content Caching for example stores calculated XML data in buffers and re-uses the data whenever possible for further requests.
 \\ \\
-As mentioned in the introduction, HTTP-based Web services are subdivided into two major groups: "Big Web Services" that use XML, Message Passing and Remote Procedure Calls and follow the SOAP protocol as well as "RESTful" Web services which do not necessarily require XML and rely only on Remote Procedure Calls. 
+As mentioned in the introduction, HTTP-based Web services are subdivided into two major groups: "Big Web Services" use XML, Message Passing, Remote Procedure Calls and follow the SOAP protocol; "RESTful" Web services do not necessarily require XML and rely only on Remote Procedure Calls. 
 \\ \\
-The next part of this article discusses the basics of the REST architectural style, the Web Application Description Language and compares it to the SOAP/WSDL-stack.
+The next part of this article discusses the basics of the REST architectural style, the Web Application Description Language, and compares it to the SOAP/WSDL-stack.

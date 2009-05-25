@@ -18,19 +18,19 @@ REST is not intended to capture all possible uses of the Web protocol standards.
 RESTful applications rely on a client/server architecture with a pull-based interaction style, which means that the client is responsible for accessing and modifying resources. Push-based interaction can also be emulated by polling (e.g. to implement the Observer-pattern).}
 
 \item{{\bf Statelessness:}
-Another property of RESTful services is their statelessness, which forces clients to encapsulate necessary state information in each request, because there is no stored context on the server. Even though statelessness has a large impact on network performance, it also enables RESTful web services to scale horizontally. Additionally parallel processing is enabled, since there are no direct dependencies between requests.}
+another property of RESTful services is their statelessness, which forces clients to encapsulate necessary state information in each request, because there is no stored context on the server. Even though statelessness has a large impact on network performance, it also enables RESTful web services to scale horizontally. Additionally, parallel processing is enabled, since there are no direct dependencies between requests.}
 
 \item{{\bf Cache:}
 RESTful services also have to provide information whether responses are cachable or non-cachable. This enables clients to (partially) buffer information on their side, to reduce network traffic and ultimately to help scalability.}
 
 \item{{\bf Uniform Interface:}
-It must be possible to access all resources via a generic interface (e.g. HTTPs GET, POST, PUT, DELETE, OPTIONS, HEAD). By applying the principle of generality to the component interface, the overall complexity of the system architecture is thus reduced and most important of all, implementations are decoupled from the APIs/Services they describe.}
+it must be possible to access all resources via a generic interface (e.g. HTTPs GET, POST, PUT, DELETE, OPTIONS, HEAD). By applying the principle of generality to the component interface, the overall complexity of the system architecture is thus reduced and, most importantly, implementations are decoupled from the APIs/Services they describe.}
 
 \item{{\bf Layered Components:}
-The system must be built in a way such that it is possible to insert intermediate entities such as proxy servers, caches or access control layers to enhance performance, scalability and security.}
+the system must be built in a way that allows to insert intermediate entities such as proxy servers, caches or access control layers to enhance performance, scalability and security.}
 
 \item{{\bf Code-on-Demand:}
-Clients may provide functionality to download and execute code in form of applets and scripts, which drastically simplifies clients and aids code-reuse. Due to the fact that visibility suffers from this constraint, it is made optional, but still preferable in some cases (for example in the form of Java Applets).}
+clients may provide functionality to download and execute code in form of applets and scripts, which drastically simplifies clients and aids code-reuse. Due to the fact that visibility suffers from this constraint, it is made optional, but still preferable in some cases (for example in the form of Java Applets).}
 \end{itemize}
 Additionally, Fielding shows that REST APIs should not depend on single communication protocols (such as the HTTP); he states that any protocol providing URIs for identification of resources can be used for REST-style applications (such as FTP and Gopher). \cite{FIELDBLOG}.
 \\ \\
@@ -47,13 +47,13 @@ Additionally, Fielding shows that REST APIs should not depend on single communic
 \begin{itemize}
 
 \item{{\bf Resources and Resource Identifiers:}
-In REST, resources are the key element of abstraction; they are uniquely identified via a resource identifier (in form of a URI). Resources may be dynamic (e.g. the current time) or static (non-changing entities such as the date-of-birth or the social security number).}
+in REST, resources are the key element of abstraction; they are uniquely identified via a resource identifier (in form of a URI). Resources may be dynamic (e.g. the current time) or static (non-changing entities such as the date-of-birth or the social security number).}
 
 \item{{\bf Representations:}
-REST representations are used to capture and transfer the state of resources between components. Representations are defined as a sequence of bytes, but can also be thought of as documents, files or generally HTTP messages.}
+REST representations are used to capture and transfer the state of resources between components. Representations are defined as a sequence of bytes, but can also be thought of as documents, files or general HTTP messages.}
 
 \item{{\bf Connectors and Components:}
-REST connectors provide an abstract interface for component communication. They hide the underlying implementation and thus improve separation of concerns. Web-connectors are specifically: \emph{servers} (server interfaces, such as libwww or NSAPI), \emph{clients} (an http-library to communicate with a server, such as libwww), \emph{caches} (cache networks or content delivery networks), \emph{resolvers} (service-resolvers such as DNS) and \emph{tunnels} (low-level connectivity libraries, such as SOCKS or SSL).}
+REST connectors provide an abstract interface for component communication. They hide the underlying implementation and thus improve separation of concerns. Web-connectors are \emph{servers} (server interfaces, such as libwww or NSAPI), \emph{clients} (an http-library to communicate with a server, such as libwww), \emph{caches} (cache networks or content delivery networks), \emph{resolvers} (service-resolvers such as DNS) and \emph{tunnels} (low-level connectivity libraries, such as SOCKS or SSL).}
 
 \end{itemize}
 
@@ -73,7 +73,7 @@ A general (but incomplete) mapping to CRUD-operations could look like this:
 		\emph{DELETE} & Delete & Delete & Destroy \\ \hline
 	\end{tabular}
 \end{center}
-\emph{Figure 4} shows a sequence diagram of typical RESTful communication. In the first step, an article with \emph{ID} 1 is retrieved. The client sends an HTTP-GET request to the URI of the article. Then the server contacts the DB, prepares the data and sends it back in the HTTP response. In the second step, the client creates a new article by sending an HTTP-put request to the \emph{/article}-URI. The server creates the article and sends an HTTP-redirect back to the client. The client then automatically follows the link, contacts the server with another HTTP-GET request and retrieves the data just like in the first step.
+\emph{Figure 4} shows a sequence diagram of a typical RESTful communication. In the first step, an article with \emph{ID} 1 is retrieved. The client sends an HTTP-GET request to the URI of the article. Then the server contacts the DB, prepares the data and sends it back in the HTTP response. In the second step, the client creates a new article by sending an HTTP-put request to the \emph{/article}-URI. The server creates the article and sends an HTTP-redirect back to the client. The client then automatically follows the link, contacts the server with another HTTP-GET request and retrieves the data just like in the first step.
 \begin{figure}[htp]                                                                                                                                               
 \centering
 \includegraphics[scale=0.8]{img/restful_web_service.pdf}
@@ -84,7 +84,7 @@ Not all applications must necessarily have the same method-semantics. This appli
 
 \subsubsection{A Real World Example: The S3 RESTful Web Service}
 
-Essentially S3 is a simple Web Service interface that can be used to store and retrieve any amount of data, at any time from anywhere in the Web. It provides a minimal feature set to read, write and delete an unlimited amount of data-objects. Each object is stored in a bucket and is identified via a unique key.
+Essentially, S3 is a simple Web Service interface which can be used to store and retrieve any amount of data at any time from anywhere in the Web. It provides a minimal feature set to read, write and delete an unlimited amount of data-objects. Each object is stored in a bucket and is identified via a unique key.
 \\ \\
 Amazon exposes the S3 Service amongst others via a RESTful interface which provides three different types of resources:
 \begin{itemize}
@@ -106,7 +106,7 @@ The following table describes how to access buckets and objects and manipulate t
 		\hline
 	\end{tabular}
 \end{center}
-To create a new bucket named \emph{foo}, the following HTTP request can be used\footnote{Metadata and authentication parameters are omitted for simplicity's sake.}
+To create a new bucket named \emph{foo}, the following HTTP request can be used\footnote{Metadata and authentication parameters are omitted for the sake of simplicity.}
 \begin{center}
 \emph{PUT https://s3.amazonaws.com/foo}
 \end{center}

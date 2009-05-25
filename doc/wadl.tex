@@ -1,9 +1,9 @@
 \subsubsection{Definition}
-The Web Application Description Language (short WADL) is an XML-language providing a machine-readable description of HTTP-based  Web applications. Originally it was designed to provide a simple alternative to WSDL for use with XML/HTTP Web applications. Still, the main purpose of this language is to offer meta-information especially for RESTful Web services; thus it provides information for: 
+The Web Application Description Language (short WADL) is an XML-language providing a machine-readable description of HTTP-based  Web applications. Originally, it was designed to provide a simple alternative to WSDL for use with XML/HTTP Web applications. Still, the main purpose of this language is to offer meta-information especially for RESTful Web services; thus it provides information for: 
 \begin{itemize}
 \item{{\bf A set of resources:} as defined in \emph{Architectural Elements}.}
 \item{{\bf Relationships between resources:} how resources relate to each other. Both, referential and causal links are included.}
-\item{{\bf Methods that can be applied to each resource:} HTTP methods that each resource responds to. Additionally information about input parameters, return values and their data formats is provided.}
+\item{{\bf Methods that can be applied to each resource:} HTTP methods that each resource responds to. Additionally, information about input parameters, return values and their data formats is provided.}
 \item{{\bf Resource representation formats and error handling:} which MIME types the application supports and how the described service acts in case of faults. \cite{WADL}}
 \end{itemize}
 Even though REST is not necessarily bound to a protocol, WADL is only defined for the HTTP.
@@ -12,16 +12,16 @@ The most important field of application is \emph{code generation} for servers an
 \\
 Type information is especially useful for statically typed languages such as Java or C\#, where types play a crucial role in the actual implementation.
 \\ \\
-Another application area of the WADL is the field of \emph{application modelling and visualization}. It allows for development of resource modelling tools and to analyze resource relationships and dependencies. \cite{WADL}
+Another application area of the WADL is the field of \emph{application modelling and visualization}. It allows for development of resource modelling tools and for analyzing resource relationships and dependencies. \cite{WADL}
 \\ \\
-WADL also provides a form of \emph{type safety}. Since WADL resources are annotated with types, this information can be drawn into consideration at compile-time and can be used to check the implementation for type mismatches. Analogue to statically typed programming languages this can have a major impact on error detection and furthermore on code quality.
+WADL also provides a form of \emph{type safety}. Since WADL resources are annotated with types, this information can be drawn into consideration at compile-time and can be used to check the implementation for type mismatches. As it is the case with statically typed programming languages this can have a major impact on error detection and furthermore on code quality.
 \\
 Since WADL is primarily used for RESTful interfaces this can also be seen as a point of criticism, since the RESTful architectural guide explicitly forbids typing of resources.
 
 \subsubsection{Criticism}
-The author of the REST style, Roy T. Fielding, criticizes description languages for RESTful interfaces. He states that RESTful APIs should never have "typed resources that are significant for the client", since the typing information should only be inferred from the current representations media type and standardized relation names.  \cite{FIELDBLOG}
+The author of the REST style, Roy T. Fielding, criticizes description languages for RESTful interfaces. He states that RESTful APIs should never have "typed resources that are significant for the client", since the typing information should only be inferred from the current representations media type and from standardized relation names.  \cite{FIELDBLOG}
 \\ \\
-Another major point of criticism is the fact that the WADL includes URIs to describe resources \emph{statically}. While this is necessary to describe RESTful applications in WADL, it is also at odds with RESTs primary principle that clients should not rely on fixed namespaces or URIs (i.e. have any link other than the entry point to the application baked into the application).
+Another major point of criticism is the fact that the WADL includes URIs to describe resources \emph{statically}. While this is necessary to describe RESTful applications in WADL, it is at odds with RESTs primary principle that clients should not rely on fixed namespaces or URIs (i.e. have any link other than the entry point to the application baked into the application).
 \\ \\
 Fielding states:
 \begin{quote}

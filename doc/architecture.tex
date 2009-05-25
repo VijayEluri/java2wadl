@@ -1,28 +1,41 @@
 \subsubsection{API/Implementation}
 The Java2Wadl2Java library is designed for the JVM and implemented in the Java Programming Language. It was developed specifically for J2SE 6.0.
 \\ \\
-The library is separated into an API and a default implementation. All implementation is written against the API, which makes it easy to exchange critical parts of the system at a later time. More important is the fact that all type information that is available externally has to be part of the API. No implementation-specific information is allowed to leak. Separation of the API from the implementation ensures desirable software properties such as \emph{data hiding} and \emph{programming against interfaces}.
+The library is separated into an API and a default implementation. All implementation is written against the API, which makes it easy to exchange critical parts of the system at a later time. More important, however, is the fact that all type information which is available externally has to be part of the API. No implementation-specific information is allowed to leak. Separation of the API from the implementation ensures desirable software properties such as \emph{data hiding} and \emph{programming against interfaces}.
 \\ \\
 API-specific files can be found in \emph{src/main/java/api} and are typically Java Interfaces. The default implementation files are located in \emph{src/main/java/impl}. Unit tests are stored in \emph{src/test/java}.
 
 \subsubsection{Entry points}
-Java2Wadl2Java provides only two Interfaces to access the toolkit: \emph{IJava2Wadl} which is used to generate WADL files from Java classes and \emph{IWadl2Java} which works the other way.
+Java2Wadl2Java provides two main Interfaces to access the toolkit: \emph{IJava2Wadl} which is used to generate WADL files from Java classes and \emph{IWadl2Java} which works the other way around. An additional interface called \emph{IApplicationParser} is available which can be used to map WADL-XML-files onto an \emph{IAppliation} data-structure. 
 \\ \\
-\emph{IJava2Wadl} can be accessed with the \emph{generate} method which generates a helper data-structure containing the resulting WADL description and XML schemas.
+\emph{IJava2Wadl} can be accessed with the \emph{generate} method which creates a helper data-structure containing the resulting WADL description and XML schemas. The method can also be called with an optional \emph{base URI} that is used as an enclosing namespace for all included resources.
 \lstset{basicstyle={\footnotesize \ttfamily}, language=Java, numbers=left, frame=none, tabsize=2, caption=The IJava2Wadl Interface, label=IJava2Wadl}
 \begin{lstlisting}
+package at.ac.tuwien.infosys.java2wadl;
+
 public interface IJava2Wadl {
 	Wadl generate(Class<?> type) throws WadlException;
-	
-	Wadl generate(Class<?> type, String baseUri) 
+
+	Wadl generate(Class<?> type, String baseUri) throws WadlException;
+}
+\end{lstlisting}
+\emph{IWadl2Java} can be accessed in a similar manner: it accepts a String that contains the WADL-Schema and a default package name. Then it creates a set of Java classes mapping WADL resources and depending data files.
+\lstset{basicstyle={\footnotesize \ttfamily}, language=Java, numbers=left, frame=none, tabsize=2, caption=The IWadl2Java Interface, label=IWadl2Java}
+\begin{lstlisting}
+package at.ac.tuwien.infosys.wadl2java;
+
+public interface IWadl2Java {
+	List<JavaSource> generate(String wadlSchema, String packageName) 
 		throws WadlException;
 }
 \end{lstlisting}
-\emph{IWadl2Java} can be accessed in a similar fashion: \emph{TODO}
-\lstset{basicstyle={\footnotesize \ttfamily}, language=Java, numbers=left, frame=none, tabsize=2, caption=The IWadl2Java Interface, label=IWadl2Java}
+Additionally, there is an interface to access a lower-level parsing routine which maps WADL-XML files onto a Java object tree. Usually it is not required to access this interface, but in case programatic manipulation of the XML-tree is necessary, this can be quite helpful.
+\lstset{basicstyle={\footnotesize \ttfamily}, language=Java, numbers=left, frame=none, tabsize=2, caption=The IApplicationParser Interface, label=IApplicationParser}
 \begin{lstlisting}
-public interface IJava2Wadl {
-	ToDo todo(ToDo todo) throws WadlException;
+package at.ac.tuwien.infosys.wadl2java.xml;
+
+public interface IApplicationParser {
+	IApplication parse(String wadlDescription) throws WadlException;
 }
 \end{lstlisting}
 

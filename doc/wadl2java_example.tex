@@ -1,0 +1,166 @@
+This example demonstrates the generation of Java classes based on WADL descriptions.
+\\ \\
+\emph{Listing 7} shows the WADL-file that will be converted into a set of Java classes:
+\lstset{basicstyle={\footnotesize \ttfamily}, language=XML, frame=none, tabsize=2, caption=Customer Service WADL description label=CustomerService.wadl}
+\begin{lstlisting}
+<?xml version="1.0"?>
+<application xmlns="http://research.sun.com/wadl/2006/10"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <grammars>
+    <include 
+    	href="at.ac.tuwien.infosys.java2wadl.customerservice.Customers.xsd">
+    </include>
+
+    <include
+    	href="at.ac.tuwien.infosys.java2wadl.customerservice.Customer.xsd">
+    </include>
+
+    <include
+	    href="at.ac.tuwien.infosys.java2wadl.customerservice.Product.xsd">
+    </include>
+  </grammars>
+
+  <resources base="/base">
+    <resource path="customerservice">
+      <method href="#CustomerService_getCustomers_" />
+
+      <resource path="customers">
+        <method href="#CustomerService_addCustomer_Customer" />
+
+        <resource path="{id}">
+          <method href="#CustomerService_getCustomer_String" />
+
+          <method href="#CustomerService_updateCustomer_String_Customer" />
+
+          <method href="#CustomerService_deleteCustomer_String" />
+        </resource>
+      </resource>
+
+      <resource path="orders">
+        <resource path="{orderId}">
+          <resource path="products">
+            <resource path="{productId}">
+              <method href="#Order_getProduct_Long" />
+            </resource>
+          </resource>
+        </resource>
+      </resource>
+    </resource>
+  </resources>
+
+  <method name="GET" id="CustomerService_getCustomers_">
+    <response>
+      <representation element="j2wns:customers" status="200">
+      </representation>
+    </response>
+  </method>
+
+  <method name="GET" id="CustomerService_getCustomer_String">
+    <response>
+      <representation mediaType="application/xml"
+      element="j2wns:customer" status="200">
+      </representation>
+    </response>
+  </method>
+
+  <method name="PUT" id="CustomerService_updateCustomer_String_Customer">
+    <request>
+      <representation mediaType="application/xml"
+      element="j2wns:customer">
+      </representation>
+    </request>
+
+    <response>
+      <representation status="200">
+      </representation>
+    </response>
+  </method>
+
+  <method name="POST" id="CustomerService_addCustomer_Customer">
+    <request>
+      <representation element="j2wns:customer">
+      </representation>
+    </request>
+
+    <response>
+      <representation status="200">
+      </representation>
+
+      <fault status="400">
+      </fault>
+    </response>
+  </method>
+
+  <method name="DELETE" id="CustomerService_deleteCustomer_String">
+    <response>
+      <representation status="200">
+      </representation>
+    </response>
+  </method>
+
+  <method name="GET" id="Order_getProduct_Long">
+    <response>
+      <representation element="j2wns:product" status="200">
+      </representation>
+    </response>
+  </method>
+</application>
+\end{lstlisting}
+The resulting Java classes:
+\lstset{basicstyle={\footnotesize \ttfamily}, language=Java, numbers=left, frame=none, tabsize=2, caption=Generated Customer Service Java Class, label=CustomerService.java}
+\begin{lstlisting}
+package test;
+
+import javax.ws.rs.*;
+
+@Path("/base/customerservice")
+public class CustomerService {
+
+	@GET
+	public Customers getCustomers() {
+		// TODO: Auto-generated method stub
+		return null;
+	}
+
+	@POST
+	@Path("/customers")
+	public Response addCustomer(Customer customer) 
+			throws WebApplicationException {
+		// TODO: Auto-generated method stub
+		return null;
+	}
+
+	@GET
+	@Path("/customers/{id}")
+	@Produces("application/xml")
+	public Customer getCustomerXML(@PathParam("id") String id) {
+		// TODO: Auto-generated method stub
+		return null;
+	}
+
+	@PUT
+	@Path("/customers/{id}")
+	@Consumes("application/xml")
+	public Response updateCustomerXML(@PathParam("id") String id, 
+		Customer customer) {
+		// TODO: Auto-generated method stub
+		return null;
+	}
+
+	@DELETE
+	@Path("/customers/{id}")
+	public Response deleteCustomer(@PathParam("id") String id) {
+		// TODO: Auto-generated method stub
+		return null;
+	}
+
+	@GET
+	@Path("/orders/{orderId}/products/{productId}")
+	public Product getProduct(@PathParam("orderId") String orderId, 
+			@PathParam("productId") String productId) {
+		// TODO: Auto-generated method stub
+		return null;
+	}
+}
+\end{lstlisting}
+Depending data models are also generated, but left out for the sake of simplicity.
